@@ -20,12 +20,14 @@
 #import "Config.h"
 
 @implementation ViewControllerFormDataSource
+@synthesize setTableViewCellsClearColor;
 
 - (id) initWithTableViewFormContainer:(UITableView *) container {
     self = [super init];
     if (self) {
         self.formContainer = container;
         self.setupDataSourceDone = false;
+        self.setTableViewCellsClearColor = false;
     }
     
     return self;
@@ -145,6 +147,15 @@
     
     [manager insertAfterKey:CELL_EMPTY_CELL2 object:dataObj forKey:CELL_TERMS_LINK];
     
+    dataObj = [[FormPortionTableViewCellData alloc] init];
+    dataObj.tag = TAG_EMPTY_CELL3;
+    dataObj.type = TYPE_EMPTY;
+    dataObj.contentIdentifier = CELL_EMPTY_CELL3;
+    dataObj.cellHeight = 120.0;
+    dataObj.uiState = YES;
+    
+    [manager insertAfterKey:CELL_TERMS_LINK object:dataObj forKey:CELL_EMPTY_CELL3];
+    
     self.setupDataSourceDone = true;
 }
 
@@ -180,7 +191,7 @@
                 [cellEmpty setTag:data.tag];
             }
             
-            [cellEmpty setBackgroundColor:[UIColor clearColor]];
+            (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
             
             return cellEmpty;
         } else if (data.type == TYPE_BUTTON) {
@@ -197,7 +208,7 @@
             [cellBtn.tblVwCellButton setTitle:data.title forState:UIControlStateNormal];
             [cellBtn bringSubviewToFront:cellBtn.tblVwCellButton];
             
-            [cellBtn setBackgroundColor:[UIColor clearColor]];
+            (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
             [cellBtn setTag:indexPath.row];
             [cellBtn setNeedsDisplay];
             return cellBtn;
@@ -214,7 +225,7 @@
                 [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_PROBLEM cells.
             }
             
-//            [cellHeadTitle setBackgroundColor:[UIColor clearColor]];
+            (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
             [cellHeadTitle setTag:indexPath.row];
             [cellHeadTitle setNeedsDisplay];
             return cellHeadTitle;
@@ -231,7 +242,7 @@
                 [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_PROBLEM cells.
             }
             
-            [cellHint setBackgroundColor:[UIColor clearColor]];
+            (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
             [cellHint setTag:indexPath.row];
             [cellHint setNeedsDisplay];
 
@@ -250,7 +261,7 @@
                 [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_PROBLEM cells.
             }
             
-            [cellLink setBackgroundColor:[UIColor clearColor]];
+            (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
             [cellLink setTag:indexPath.row];
             [cellLink setNeedsDisplay];
             return cellLink;
@@ -276,7 +287,7 @@
             [cellSwitch.lblSwitchTitle setText:data.title];
             [cellSwitch.lblSwitchTitle setTextColor:[UIColor blackColor]];
             
-            [cellSwitch setBackgroundColor:[UIColor clearColor]];
+            (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
             [cellSwitch setTag:indexPath.row];
             [cellSwitch setNeedsDisplay];
             return cellSwitch;
@@ -294,10 +305,10 @@
                 [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_PROBLEM cells.
             }
             [cellTextView.lblTitle setText:data.title];
-            [cellTextView setBackgroundColor:[UIColor clearColor]];
+            
+            (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
             [cellTextView setTag:indexPath.row];
             [cellTextView setNeedsDisplay];
-            
             return cellTextView;
         } else if (data.type == TYPE_TEXTFIELD) {
             cellTextField = (TextFieldTableViewCell *)[tableView dequeueReusableCellWithIdentifier:textFieldCellId];
@@ -313,7 +324,7 @@
                 [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_PROBLEM cells.
             }
             
-            [cellTextField setBackgroundColor:[UIColor clearColor]];
+            (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
             [cellTextField setTag:indexPath.row];
             [cellTextField setNeedsDisplay];
             return cellTextField;
