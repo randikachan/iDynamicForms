@@ -14,7 +14,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *formContainer;
 @property (nonatomic, assign, getter=isSetupDataSourceDone) BOOL setupDataSourceDone;
 @property (nonatomic, assign, getter=isSetTableViewCellsClearColor) BOOL setTableViewCellsClearColor;
+@property (weak, nonatomic) UIViewController *viewController;
 
-- (id) initWithTableViewFormContainer:(UITableView *) container;
+- (id) initWithTableViewFormContainer:(UITableView *) container inViewController:(UIViewController *) viewController;
 
 @end

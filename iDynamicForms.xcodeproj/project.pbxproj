@@ -17,7 +17,6 @@
 		304F299F1CE1FB2C007F776E /* ViewControllerFormConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 304F299B1CE1FB2C007F776E /* ViewControllerFormConfig.m */; };
 		304F29A01CE1FB2C007F776E /* ViewControllerFormDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 304F299D1CE1FB2C007F776E /* ViewControllerFormDataSource.m */; };
 		304F29AA1CE1FBDD007F776E /* DynamicTableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 304F29A61CE1FBDD007F776E /* DynamicTableManager.m */; };
-		304F29AB1CE1FBDD007F776E /* UITableView+Dynamic.m in Sources */ = {isa = PBXBuildFile; fileRef = 304F29A91CE1FBDD007F776E /* UITableView+Dynamic.m */; };
 		304F29BD1CE1FDA8007F776E /* LinkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 304F29B41CE1FDA8007F776E /* LinkTableViewCell.m */; };
 		304F29BE1CE1FDA8007F776E /* SwitchesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 304F29B61CE1FDA8007F776E /* SwitchesTableViewCell.m */; };
 		304F29BF1CE1FDA8007F776E /* TextViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 304F29B81CE1FDA8007F776E /* TextViewTableViewCell.m */; };
@@ -57,8 +56,6 @@
 		304F29A51CE1FBDD007F776E /* DynamicTableManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicTableManager.h; sourceTree = "<group>"; };
 		304F29A61CE1FBDD007F776E /* DynamicTableManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicTableManager.m; sourceTree = "<group>"; };
 		304F29A71CE1FBDD007F776E /* TableViewFormDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewFormDataSource.h; sourceTree = "<group>"; };
-		304F29A81CE1FBDD007F776E /* UITableView+Dynamic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Dynamic.h"; sourceTree = "<group>"; };
-		304F29A91CE1FBDD007F776E /* UITableView+Dynamic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Dynamic.m"; sourceTree = "<group>"; };
 		304F29B31CE1FDA8007F776E /* LinkTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkTableViewCell.h; sourceTree = "<group>"; };
 		304F29B41CE1FDA8007F776E /* LinkTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkTableViewCell.m; sourceTree = "<group>"; };
 		304F29B51CE1FDA8007F776E /* SwitchesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchesTableViewCell.h; sourceTree = "<group>"; };
@@ -237,8 +234,6 @@
 				304F29A51CE1FBDD007F776E /* DynamicTableManager.h */,
 				304F29A61CE1FBDD007F776E /* DynamicTableManager.m */,
 				304F29A71CE1FBDD007F776E /* TableViewFormDataSource.h */,
-				304F29A81CE1FBDD007F776E /* UITableView+Dynamic.h */,
-				304F29A91CE1FBDD007F776E /* UITableView+Dynamic.m */,
 			);
 			path = iDynamicForms;
 			sourceTree = "<group>";
@@ -418,7 +413,6 @@
 			files = (
 				304F299E1CE1FB2C007F776E /* ViewController.m in Sources */,
 				304F29BD1CE1FDA8007F776E /* LinkTableViewCell.m in Sources */,
-				304F29AB1CE1FBDD007F776E /* UITableView+Dynamic.m in Sources */,
 				304F294B1CE1E6A6007F776E /* main.m in Sources */,
 				304F29D71CE205FE007F776E /* EmptyTableViewCell.m in Sources */,
 				30BFFE701CE3AD7600829880 /* FormPortionTableViewCellData.m in Sources */,

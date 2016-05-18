@@ -90,4 +90,50 @@
     return result;
 }
 
+/*
+ * Clear out the dataSource already filled in data.
+ * if "forKey" parameter sent nil, then it will clear out the whole UI.
+ */
+- (BOOL) resetDataSourceForKey:(NSString *) forKey inFormContainer:(UITableView *)formContainer {
+    BOOL result = NO;
+    int index = 0;
+    for (NSString *inKey in mArrFormContentIdentifiersOrder) {
+        if (forKey != nil) {
+            if ([inKey isEqualToString:forKey]) {
+                //  shouldResetControl flag might be reset to False by the CellForRowAtIndexPath method IF-Else blocks after clearing out the data in the UI.
+                [((FormPortionTableViewCellData *)[mDicFormContentTableData objectForKey:inKey]) setResetControlUI:YES];
+                NSIndexPath *indexPath = [self getIndexPathForKey:inKey];
+                [formContainer scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+                [formContainer reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                result = YES;
+                break;
+            }
+        } else {
+            //  shouldResetControl flag might be reset to False by the CellForRowAtIndexPath method IF-Else blocks after clearing out the data in the UI.
+            [((FormPortionTableViewCellData *)[mDicFormContentTableData objectForKey:inKey]) setResetControlUI:YES];
+            result = YES;
+        }
+        index++;
+    }
+    
+    if (forKey == nil) {
+        [formContainer reloadData];
+    }
+    
+    return result;
+}
+
+/*
+ * Get the indexPath of the Form TableView Cell when its correspondent key is given
+ */
+- (NSIndexPath *) getIndexPathForKey: (NSString *) key {
+    NSInteger row = [mArrFormContentIdentifiersOrder indexOfObject:key];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+    return indexPath;
+}
+
+- (FormPortionTableViewCellData *) getFormPortionCellDataForKey: (NSString *) forKey {
+    return [mDicFormContentTableData objectForKey:forKey];
+}
+
 @end

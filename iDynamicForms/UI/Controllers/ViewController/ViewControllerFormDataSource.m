@@ -19,23 +19,33 @@
 #import "EmptyTableViewCell.h"
 #import "Config.h"
 
+@interface ViewControllerFormDataSource () {
+    DynamicTableManager *dynamicManager;
+}
+
+@end
+
 @implementation ViewControllerFormDataSource
 @synthesize setTableViewCellsClearColor;
 
-- (id) initWithTableViewFormContainer:(UITableView *) container {
+- (id) initWithTableViewFormContainer:(UITableView *) container inViewController:(UIViewController *) viewController {
     self = [super init];
     if (self) {
         self.formContainer = container;
         self.setupDataSourceDone = false;
         self.setTableViewCellsClearColor = false;
+        self.viewController = viewController;
     }
     
     return self;
 }
 
-- (void) setupDataSourceForViewControllerWithConfiguration:(ViewControllerFormConfig *) config withDynamicTableManager:(DynamicTableManager *)manager {
+- (void) setupDataSourceForViewControllerWithConfiguration:(ViewControllerFormConfig *) config
+                                   withDynamicTableManager:(DynamicTableManager *) manager {
+
     [[manager mArrFormContentIdentifiersOrder] removeAllObjects];
     [[manager mDicFormContentTableData] removeAllObjects];
+    dynamicManager = manager;
     
     // Form title
     FormPortionTableViewCellData *dataObj = [[FormPortionTableViewCellData alloc] init];
@@ -46,7 +56,9 @@
     dataObj.cellHeight = CELL_HEAD_TITLE_HEIGHT;
     dataObj.uiState = YES;
     
-    manager = [manager initWithContentIdentifiersArray:[manager mArrFormContentIdentifiersOrder] andContentDictionary:[manager mDicFormContentTableData] initialFormContentAs:dataObj forKey:CELL_HEAD_TITLE];
+    manager = [manager initWithContentIdentifiersArray:[manager mArrFormContentIdentifiersOrder]
+                                  andContentDictionary:[manager mDicFormContentTableData]
+                                  initialFormContentAs:dataObj forKey:CELL_HEAD_TITLE];
     
     dataObj = [[FormPortionTableViewCellData alloc] init];
     dataObj.tag = TAG_FIRST_NAME;
@@ -89,13 +101,7 @@
     
     [manager insertAfterKey:CELL_EMAIL object:dataObj forKey:CELL_PASSWORD];
     
-    dataObj = [[FormPortionTableViewCellData alloc] init];
-    dataObj.tag = TAG_SUBSCRIBE_HINT;
-    dataObj.type = TYPE_HINT;
-    dataObj.contentIdentifier = CELL_SUBSCRIBE_HINT;
-    dataObj.title = @"Please subscribe to our monthly news letter and daily digest emails, it will be very useful to you, we can assure that!";
-    dataObj.cellHeight = CELL_TEXT_VIEW_HEIGHT;
-    dataObj.uiState = NO;
+    dataObj = [self createSubscribeHint];
     
     [manager insertAfterKey:CELL_PASSWORD object:dataObj forKey:CELL_SUBSCRIBE_HINT];
     
@@ -157,6 +163,18 @@
     [manager insertAfterKey:CELL_TERMS_LINK object:dataObj forKey:CELL_EMPTY_CELL3];
     
     self.setupDataSourceDone = true;
+}
+
+- (FormPortionTableViewCellData *) createSubscribeHint {
+    FormPortionTableViewCellData *dataObj = [[FormPortionTableViewCellData alloc] init];
+    dataObj.tag = TAG_SUBSCRIBE_HINT;
+    dataObj.type = TYPE_HINT;
+    dataObj.contentIdentifier = CELL_SUBSCRIBE_HINT;
+    dataObj.title = @"Please subscribe to our monthly news letter and daily digest emails, it will be very useful to you, we can assure that!";
+    dataObj.cellHeight = CELL_TEXT_VIEW_HEIGHT;
+    dataObj.uiState = YES;
+    
+    return dataObj;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView formTableCellForRowAtIndexPath:(NSIndexPath *)indexPath withDynamicTableManager:(DynamicTableManager *)manager {
@@ -260,7 +278,7 @@
                     [cellLink.btnLink setTitle:data.title forState:UIControlStateNormal];
                 }
                 [cellLink.btnLink setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-                
+                [cellLink.btnLink addTarget:self.viewController action:@selector(linkBtnActions:) forControlEvents:UIControlEventTouchUpInside];
                 [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
             }
             
@@ -273,7 +291,7 @@
             if (cellSwitch == nil || data.resetControlUI) {
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:switchCellID owner:nil options:nil];
                 cellSwitch = [nib objectAtIndex:0];
-//                [cellSwitch.switchChoice addTarget:self action:@selector(changeSwitchState:) forControlEvents:UIControlEventValueChanged];
+                [cellSwitch.switchChoice addTarget:self action:@selector(changeSwitchState:) forControlEvents:UIControlEventValueChanged];
                 [cellSwitch.switchChoice setTag:data.tag];
                 
                 [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
@@ -338,8 +356,26 @@
     return nil;
 }
 
-- (void)formSubmitBtnAction:(id)sender {
-    NSLog(@"submit form");
+#pragma mark UI Control Actions
+- (void) formButtonAction:(UIButton *) button {
+    if (((int) [button tag]) == TAG_SIGN_UP_BUTTON) {
+        NSLog(@"submit form");
+    }
+}
+
+- (void) changeSwitchState:(UISwitch *) switchChoice {
+    if (((int) [switchChoice tag]) == TAG_SUBSCRIBE) {
+        if ([switchChoice isOn]) {
+            NSLog(@"switch turned ON!");
+            [dynamicManager removeObjectForKey:CELL_SUBSCRIBE_HINT];
+            [[dynamicManager getFormPortionCellDataForKey:CELL_SUBSCRIBE] setState:YES];
+        } else {
+            NSLog(@"switch turned OFF!");
+            [dynamicManager insertAfterKey:CELL_PASSWORD object:[self createSubscribeHint] forKey:CELL_SUBSCRIBE_HINT];
+            [[dynamicManager getFormPortionCellDataForKey:CELL_SUBSCRIBE] setState:NO];
+        }
+    }
+    [self.formContainer reloadData];
 }
 
 @end

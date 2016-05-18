@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "FormPortionTableViewCellData.h"
 
 @interface DynamicTableManager : NSObject
@@ -22,5 +23,11 @@
 - (BOOL) insertAfterKey:(NSString *) key object:(FormPortionTableViewCellData *) object forKey:(NSString *) forKey;
 
 - (BOOL) removeObjectForKey:(NSString *) forKey;
+
+- (BOOL) resetDataSourceForKey:(NSString *) forKey inFormContainer:(UITableView *)formContainer;
+
+- (NSIndexPath *) getIndexPathForKey: (NSString *) key;
+
+- (FormPortionTableViewCellData *) getFormPortionCellDataForKey: (NSString *) forKey;
 
 @end
