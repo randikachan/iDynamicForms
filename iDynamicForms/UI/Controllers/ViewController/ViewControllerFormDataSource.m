@@ -238,6 +238,9 @@
                 if (data.title != nil && [data.title length] > 0) {
                     [cellHint.txtVwDescription setText:data.title];
                 }
+                [cellHint.txtVwDescription setEditable:data.isEnabled];
+                [cellHint.txtVwDescription setSelectable:data.isEnabled];
+                [cellHint.txtVwDescription setScrollEnabled:data.isEnabled];
 
                 [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_PROBLEM cells.
             }
