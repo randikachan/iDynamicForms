@@ -1,8 +1,8 @@
 //
 //  AppDelegate.h
-//  iDynamicForms
+//  DynamicTableView
 //
-//  Created by Kasun Randika on 5/10/16.
+//  Created by Kasun Randika on 5/9/16.
 //  Copyright © 2016 Kasun Randika. All rights reserved.
 //
 

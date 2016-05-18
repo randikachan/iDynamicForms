@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" selectionStyle="default" indentationWidth="10" rowHeight="44" id="x0d-Q7-rz9" customClass="HeadTitleTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" tableViewCell="x0d-Q7-rz9" id="ab6-hc-my6">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dummy_tblcl_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="tnb-2l-TRc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="Mau-F7-2Qv"/>
+                        </constraints>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="dummy.png" translatesAutoresizingMaskIntoConstraints="NO" id="01C-bP-J0Y">
+                        <rect key="frame" x="20" y="10" width="24" height="24"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="Y0Y-HG-8lu"/>
+                            <constraint firstAttribute="width" constant="24" id="uMb-Zn-4hv"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="tnb-2l-TRc" firstAttribute="leading" secondItem="ab6-hc-my6" secondAttribute="leadingMargin" constant="-8" id="5hM-H4-qPE"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="tnb-2l-TRc" secondAttribute="trailing" constant="-8" id="7YV-3T-hJz"/>
+                    <constraint firstItem="tnb-2l-TRc" firstAttribute="leading" secondItem="ab6-hc-my6" secondAttribute="leading" id="EBe-WY-iLQ"/>
+                    <constraint firstItem="01C-bP-J0Y" firstAttribute="leading" secondItem="ab6-hc-my6" secondAttribute="leadingMargin" constant="12" id="ay3-Z0-Sje"/>
+                    <constraint firstItem="01C-bP-J0Y" firstAttribute="centerY" secondItem="ab6-hc-my6" secondAttribute="centerY" id="v5R-hK-uto"/>
+                    <constraint firstItem="tnb-2l-TRc" firstAttribute="centerY" secondItem="01C-bP-J0Y" secondAttribute="centerY" id="yD0-5K-kcr"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+            <point key="canvasLocation" x="575" y="485"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="dummy.png" width="24" height="24"/>
+        <image name="dummy_tblcl_bg.png" width="320" height="44"/>
+    </resources>
+</document>
