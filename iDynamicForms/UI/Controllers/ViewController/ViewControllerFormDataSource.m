@@ -200,9 +200,9 @@
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:buttonCellID owner:nil options:nil];
                 cellBtn = [nib objectAtIndex:0];
                 
-                //                UIButton *button = (UIButton *) cellBtn.tblVwCellButton;
-                //                [button addTarget:self action:@selector(sendReport:) forControlEvents:UIControlEventTouchUpInside];
-                [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_PROBLEM cells.
+                UIButton *button = (UIButton *) cellBtn.tblVwCellButton;
+                [button addTarget:self action:@selector(formSubmitBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+                [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
             }
             
             [cellBtn.tblVwCellButton setTitle:data.title forState:UIControlStateNormal];
@@ -222,7 +222,7 @@
                     [cellHeadTitle.lblHeadTItle setText:data.title];
                 }
                 [cellHeadTitle.lblHeadTItle setTextColor:[UIColor redColor]];
-                [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_PROBLEM cells.
+                [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
             }
             
             (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
@@ -242,7 +242,7 @@
                 [cellHint.txtVwDescription setSelectable:data.isEnabled];
                 [cellHint.txtVwDescription setScrollEnabled:data.isEnabled];
 
-                [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_PROBLEM cells.
+                [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
             }
             
             (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
@@ -260,8 +260,8 @@
                     [cellLink.btnLink setTitle:data.title forState:UIControlStateNormal];
                 }
                 [cellLink.btnLink setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-                //                [cellLink.btnLink addTarget:self action:@selector(btnMeldInAndere:) forControlEvents:UIControlEventTouchUpInside];
-                [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_PROBLEM cells.
+                
+                [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
             }
             
             (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
@@ -276,7 +276,7 @@
 //                [cellSwitch.switchChoice addTarget:self action:@selector(changeSwitchState:) forControlEvents:UIControlEventValueChanged];
                 [cellSwitch.switchChoice setTag:data.tag];
                 
-                [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_PROBLEM cells.
+                [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
             }
             
             [cellSwitch.switchChoice setOn:data.state];
@@ -305,7 +305,7 @@
 //                cellProblem.txtVwDescription.inputAccessoryView = self.toolbarForKeyboard;
 //                cellProblem.txtVwDescription.delegate = self;
                 
-                [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_PROBLEM cells.
+                [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
             }
             [cellTextView.lblTitle setText:data.title];
             
@@ -324,7 +324,7 @@
                 }
                 [cellTextField.txtFldDetail setSecureTextEntry:[data isSecuredTextField]];
                 
-                [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_PROBLEM cells.
+                [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
             }
             
             (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
@@ -336,6 +336,10 @@
         return nil;
     }
     return nil;
+}
+
+- (void)formSubmitBtnAction:(id)sender {
+    NSLog(@"submit form");
 }
 
 @end
