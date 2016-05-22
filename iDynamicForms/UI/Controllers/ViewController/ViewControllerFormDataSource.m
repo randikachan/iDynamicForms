@@ -32,9 +32,9 @@
     self = [super init];
     if (self) {
         self.formContainer = container;
+        self.viewController = viewController;
         self.setupDataSourceDone = false;
         self.setTableViewCellsClearColor = false;
-        self.viewController = viewController;
     }
     
     return self;
@@ -172,7 +172,7 @@
     dataObj.contentIdentifier = CELL_SUBSCRIBE_HINT;
     dataObj.title = @"Please subscribe to our monthly news letter and daily digest emails, it will be very useful to you, we can assure that!";
     dataObj.cellHeight = CELL_TEXT_VIEW_HEIGHT;
-    dataObj.uiState = YES;
+    dataObj.uiState = NO;
     
     return dataObj;
 }
@@ -219,7 +219,8 @@
                 cellBtn = [nib objectAtIndex:0];
                 
                 UIButton *button = (UIButton *) cellBtn.tblVwCellButton;
-                [button addTarget:self action:@selector(formSubmitBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+                [button addTarget:self action:@selector(formButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+                [button setTag:data.tag];
                 [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
             }
             
@@ -258,7 +259,7 @@
                 }
                 [cellHint.txtVwDescription setEditable:data.isEnabled];
                 [cellHint.txtVwDescription setSelectable:data.isEnabled];
-                [cellHint.txtVwDescription setScrollEnabled:data.isEnabled];
+                // [cellHint.txtVwDescription setScrollEnabled:data.isEnabled];
 
                 [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
             }
@@ -358,8 +359,9 @@
 
 #pragma mark UI Control Actions
 - (void) formButtonAction:(UIButton *) button {
+    NSLog(@"formButtonAction");
     if (((int) [button tag]) == TAG_SIGN_UP_BUTTON) {
-        NSLog(@"submit form");
+        NSLog(@"submit form: %@", [self collectData]);
     }
 }
 
@@ -378,4 +380,19 @@
     [self.formContainer reloadData];
 }
 
+#pragma mark Form User Entered Data handling
+- (NSDictionary *) collectData {
+    NSMutableDictionary *dataDic = [[NSMutableDictionary alloc] init];
+    NSString *firstName = [dynamicManager getDataStringFromTextFieldForCellKey:CELL_FIRST_NAME];
+    [dataDic setObject:firstName forKey:CELL_FIRST_NAME];
+    NSString *secondName = [dynamicManager getDataStringFromTextFieldForCellKey:CELL_SECOND_NAME];
+    [dataDic setObject:secondName forKey:CELL_SECOND_NAME];
+    NSString *email = [dynamicManager getDataStringFromTextFieldForCellKey:CELL_EMAIL];
+    [dataDic setObject:email forKey:CELL_EMAIL];
+    NSString *password = [dynamicManager getDataStringFromTextFieldForCellKey:CELL_PASSWORD];
+    [dataDic setObject:password forKey:CELL_PASSWORD];
+    BOOL subscribe = [dynamicManager getBooleanFromSwitchForCellKey:CELL_SUBSCRIBE];
+    [dataDic setObject:[NSNumber numberWithBool:subscribe]  forKey:CELL_SUBSCRIBE];
+    return dataDic;
+}
 @end

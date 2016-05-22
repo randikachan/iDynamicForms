@@ -8,16 +8,24 @@
 
 #import "DynamicTableManager.h"
 #import "FormPortionTableViewCellData.h"
+#import "TextFieldTableViewCell.h"
+#import "TextViewTableViewCell.h"
+#import "SwitchesTableViewCell.h"
 
 @implementation DynamicTableManager
 @synthesize mArrFormContentIdentifiersOrder;
 @synthesize mDicFormContentTableData;
+@synthesize formContainer;
 
-- (id)initWithContentIdentifiersArray:(NSMutableArray *)contentIdentifiers andContentDictionary:(NSMutableDictionary *)contentDictionary {
+- (id) initWithContentIdentifiersArray:(NSMutableArray *)contentIdentifiers
+                  andContentDictionary:(NSMutableDictionary *)contentDictionary
+                          andTableView:(UITableView *)formTableView {
     self = [super init];
     if (self) {
         mArrFormContentIdentifiersOrder = contentIdentifiers;
         mDicFormContentTableData = contentDictionary;
+        self.formContainer = formTableView;
+        
     }
     
     return self;
@@ -94,7 +102,7 @@
  * Clear out the dataSource already filled in data.
  * if "forKey" parameter sent nil, then it will clear out the whole UI.
  */
-- (BOOL) resetDataSourceForKey:(NSString *) forKey inFormContainer:(UITableView *)formContainer {
+- (BOOL) resetDataSourceForKey:(NSString *) forKey {
     BOOL result = NO;
     int index = 0;
     for (NSString *inKey in mArrFormContentIdentifiersOrder) {
@@ -134,6 +142,31 @@
 
 - (FormPortionTableViewCellData *) getFormPortionCellDataForKey: (NSString *) forKey {
     return [mDicFormContentTableData objectForKey:forKey];
+}
+
+- (UITableViewCell *) getFormCellForKey:(NSString *)forKey forKindOfClass:(Class)aClass {
+    NSIndexPath *indexPath = [self getIndexPathForKey:forKey];
+    if ([[formContainer cellForRowAtIndexPath:indexPath] isKindOfClass:aClass]) {
+        return [formContainer cellForRowAtIndexPath:indexPath];
+    } else {
+        return nil;
+    }
+}
+
+#pragma mark - Data Accessor methods to Form UI (for the UITableViewCells, which are visible at the moment)
+- (NSString *) getDataStringFromTextFieldForCellKey:(NSString *)forKey {
+    TextFieldTableViewCell *cell = (TextFieldTableViewCell *)[self getFormCellForKey:forKey forKindOfClass:TextFieldTableViewCell.class];
+    return (cell) ? [cell.txtFldDetail text] : nil ;
+}
+
+- (NSString *) getDataStringFromTextViewForCellKey:(NSString *)forKey {
+    TextViewTableViewCell *cell = (TextViewTableViewCell *)[self getFormCellForKey:forKey forKindOfClass:TextViewTableViewCell.class];
+    return (cell) ? [cell.txtVwDescription text] : nil ;
+}
+
+- (BOOL) getBooleanFromSwitchForCellKey:(NSString *)forKey {
+    SwitchesTableViewCell *cell = (SwitchesTableViewCell *)[self getFormCellForKey:forKey forKindOfClass:SwitchesTableViewCell.class];
+    return (cell) ? [cell.switchChoice isOn] : false ;
 }
 
 @end

@@ -31,7 +31,7 @@
     self.mDicFormContentTableData = [[NSMutableDictionary alloc] init];
     
     dataSource = [[ViewControllerFormDataSource alloc] initWithTableViewFormContainer:self.tableViewFormContainer inViewController:self];
-    tableManager = [[DynamicTableManager alloc] initWithContentIdentifiersArray:self.mArrFormContentIdentifiersOrder andContentDictionary:self.mDicFormContentTableData];
+    tableManager = [[DynamicTableManager alloc] initWithContentIdentifiersArray:self.mArrFormContentIdentifiersOrder andContentDictionary:self.mDicFormContentTableData andTableView:self.tableViewFormContainer];
     [dataSource setupDataSourceForViewControllerWithConfiguration:nil withDynamicTableManager:tableManager];
 }
 

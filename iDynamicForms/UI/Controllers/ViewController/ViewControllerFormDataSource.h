@@ -11,7 +11,7 @@
 
 @interface ViewControllerFormDataSource : NSObject <TableViewFormDataSource>
 
-@property (weak, nonatomic) IBOutlet UITableView *formContainer;
+@property (weak, nonatomic) UITableView *formContainer;
 @property (nonatomic, assign, getter=isSetupDataSourceDone) BOOL setupDataSourceDone;
 @property (nonatomic, assign, getter=isSetTableViewCellsClearColor) BOOL setTableViewCellsClearColor;
 @property (weak, nonatomic) UIViewController *viewController;

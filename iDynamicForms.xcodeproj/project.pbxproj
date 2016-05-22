@@ -36,6 +36,8 @@
 		30BFFE701CE3AD7600829880 /* FormPortionTableViewCellData.m in Sources */ = {isa = PBXBuildFile; fileRef = 30BFFE6F1CE3AD7600829880 /* FormPortionTableViewCellData.m */; };
 		30BFFE781CE3B03000829880 /* TextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30BFFE771CE3B03000829880 /* TextFieldTableViewCell.m */; };
 		30BFFE7B1CE3B07500829880 /* TextFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30BFFE7A1CE3B07500829880 /* TextFieldTableViewCell.xib */; };
+		30FDBCC11CF223FC005B2D21 /* app_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30FDBCBF1CF223FC005B2D21 /* app_icon@2x.png */; };
+		30FDBCC21CF223FC005B2D21 /* app_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30FDBCC01CF223FC005B2D21 /* app_icon@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +88,8 @@
 		30BFFE771CE3B03000829880 /* TextFieldTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldTableViewCell.m; sourceTree = "<group>"; };
 		30BFFE791CE3B05900829880 /* TextFieldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldTableViewCell.h; sourceTree = "<group>"; };
 		30BFFE7A1CE3B07500829880 /* TextFieldTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldTableViewCell.xib; sourceTree = "<group>"; };
+		30FDBCBF1CF223FC005B2D21 /* app_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_icon@2x.png"; sourceTree = "<group>"; };
+		30FDBCC01CF223FC005B2D21 /* app_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_icon@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,6 +276,8 @@
 		307E44DE1CE9E50000536EB0 /* DummyImages */ = {
 			isa = PBXGroup;
 			children = (
+				30FDBCBF1CF223FC005B2D21 /* app_icon@2x.png */,
+				30FDBCC01CF223FC005B2D21 /* app_icon@3x.png */,
 				3049D2F71CEC2F3B00F0944E /* launcher@2x.png */,
 				307E44E11CE9E63A00536EB0 /* dummy_tblcl_bg@2x.png */,
 				307E44DF1CE9E53600536EB0 /* dummy@2x.png */,
@@ -388,10 +394,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				30BFFE671CE3A68900829880 /* TextViewTableViewCell.xib in Resources */,
+				30FDBCC11CF223FC005B2D21 /* app_icon@2x.png in Resources */,
 				307E44E01CE9E53600536EB0 /* dummy@2x.png in Resources */,
 				3049D2F81CEC2F3B00F0944E /* launcher@2x.png in Resources */,
 				30BFFE631CE3A61600829880 /* SwitchesTableViewCell.xib in Resources */,
 				304F29D41CE204DC007F776E /* EmptyTableViewCell.xib in Resources */,
+				30FDBCC21CF223FC005B2D21 /* app_icon@3x.png in Resources */,
 				307E44E21CE9E63A00536EB0 /* dummy_tblcl_bg@2x.png in Resources */,
 				30BFFE7B1CE3B07500829880 /* TextFieldTableViewCell.xib in Resources */,
 				303B79621CE497DE00CB848F /* HeadTitleTableViewCell.xib in Resources */,

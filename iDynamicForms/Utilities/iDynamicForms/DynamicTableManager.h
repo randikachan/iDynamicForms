@@ -11,12 +11,19 @@
 #import "FormPortionTableViewCellData.h"
 
 @interface DynamicTableManager : NSObject
+
+@property (weak, nonatomic) UITableView *formContainer;
 @property (nonatomic, strong) NSMutableArray* mArrFormContentIdentifiersOrder;
 @property (nonatomic, strong) NSMutableDictionary* mDicFormContentTableData;
 
-- (id)initWithContentIdentifiersArray:(NSMutableArray *)contentIdentifiers andContentDictionary:(NSMutableDictionary *)contentDictionary;
+- (id) initWithContentIdentifiersArray:(NSMutableArray *)contentIdentifiers
+                  andContentDictionary:(NSMutableDictionary *)contentDictionary
+                          andTableView:(UITableView *)formTableView;
 
-- (id)initWithContentIdentifiersArray:(NSMutableArray *)contentIdentifiers andContentDictionary:(NSMutableDictionary *)contentDictionary initialFormContentAs:(FormPortionTableViewCellData *)object forKey:(NSString *)forKey;
+- (id) initWithContentIdentifiersArray:(NSMutableArray *)contentIdentifiers
+                  andContentDictionary:(NSMutableDictionary *)contentDictionary
+                  initialFormContentAs:(FormPortionTableViewCellData *)object
+                                forKey:(NSString *)forKey;
 
 - (BOOL) initiateFormContentWithObject:(FormPortionTableViewCellData *)object forKey:(NSString *) forKey;
 
@@ -24,10 +31,17 @@
 
 - (BOOL) removeObjectForKey:(NSString *) forKey;
 
-- (BOOL) resetDataSourceForKey:(NSString *) forKey inFormContainer:(UITableView *)formContainer;
+- (BOOL) resetDataSourceForKey:(NSString *) forKey;
 
 - (NSIndexPath *) getIndexPathForKey: (NSString *) key;
 
 - (FormPortionTableViewCellData *) getFormPortionCellDataForKey: (NSString *) forKey;
 
+- (UITableViewCell *) getFormCellForKey:(NSString *)forKey forKindOfClass:(Class)aClass;
+
+- (NSString *) getDataStringFromTextFieldForCellKey:(NSString *)forKey;
+
+- (NSString *) getDataStringFromTextViewForCellKey:(NSString *)forKey;
+
+- (BOOL) getBooleanFromSwitchForCellKey:(NSString *)forKey;
 @end
