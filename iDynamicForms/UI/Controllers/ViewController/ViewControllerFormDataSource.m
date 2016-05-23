@@ -122,6 +122,8 @@
     dataObj.title = @"Sign Up";
     dataObj.cellHeight = CELL_BUTTON_HEIGHT;
     dataObj.uiState = YES;
+    dataObj.mainUIControlSelector = @"signUpBtnAction";
+    dataObj.selectorTarget = self;
     
     [manager insertAfterKey:CELL_SUBSCRIBE object:dataObj forKey:CELL_SIGN_UP_BUTTON];
     
@@ -150,6 +152,8 @@
     dataObj.title = @"Terms & Privacy Policy";
     dataObj.cellHeight = CELL_LINK_HEIGHT;
     dataObj.uiState = YES;
+    dataObj.mainUIControlSelector = @"linkBtnActions:";
+    dataObj.selectorTarget = self.viewController;
     
     [manager insertAfterKey:CELL_EMPTY_CELL2 object:dataObj forKey:CELL_TERMS_LINK];
     
@@ -175,6 +179,10 @@
     dataObj.uiState = NO;
     
     return dataObj;
+}
+
+- (void) signUpBtnAction {
+    NSLog(@"sign up button clicked");
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView formTableCellForRowAtIndexPath:(NSIndexPath *)indexPath withDynamicTableManager:(DynamicTableManager *)manager {
@@ -219,7 +227,13 @@
                 cellBtn = [nib objectAtIndex:0];
                 
                 UIButton *button = (UIButton *) cellBtn.tblVwCellButton;
-                [button addTarget:self action:@selector(formButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+                if (data.mainUIControlSelector) {
+                    SEL customSelector = NSSelectorFromString(data.mainUIControlSelector);
+                    [button addTarget:data.selectorTarget action:customSelector forControlEvents:UIControlEventTouchUpInside];
+                } else {
+                    [button addTarget:self action:@selector(formButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+                }
+                
                 [button setTag:data.tag];
                 [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
             }
@@ -279,7 +293,14 @@
                     [cellLink.btnLink setTitle:data.title forState:UIControlStateNormal];
                 }
                 [cellLink.btnLink setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-                [cellLink.btnLink addTarget:self.viewController action:@selector(linkBtnActions:) forControlEvents:UIControlEventTouchUpInside];
+                
+                if (data.mainUIControlSelector) {
+                    SEL customSelector = NSSelectorFromString(data.mainUIControlSelector);
+                    [cellLink.btnLink addTarget:data.selectorTarget action:customSelector forControlEvents:UIControlEventTouchUpInside];
+                } else {
+                    [cellLink.btnLink addTarget:self.viewController action:@selector(linkBtnActions:) forControlEvents:UIControlEventTouchUpInside];
+                }
+                
                 [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
             }
             
