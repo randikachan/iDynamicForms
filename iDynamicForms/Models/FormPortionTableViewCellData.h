@@ -32,7 +32,7 @@
 @property (nonatomic, assign) CGFloat cellHeight;
 // can pass a custom selector(method) which will be assigned as the target of the UI Control within the cell
 @property (nonatomic, strong) NSString *mainUIControlSelector;
-@property (nonatomic,strong) id selectorTarget;
+@property (nonatomic,strong) id mainUIControlDelegate;
 
 @property (nonatomic, assign, getter=isSecuredTextField) BOOL securedTextField;   // Whether a textField's text is secured text or not
 @property (nonatomic, assign, getter=isEnabled) BOOL uiState;   // Switch enabled or disabled

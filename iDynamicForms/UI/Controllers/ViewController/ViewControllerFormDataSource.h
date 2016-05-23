@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "TableViewFormDataSource.h"
 
-@interface ViewControllerFormDataSource : NSObject <TableViewFormDataSource>
+@interface ViewControllerFormDataSource : NSObject <TableViewFormDataSource, UITextFieldDelegate>
 
 @property (weak, nonatomic) UITableView *formContainer;
 @property (nonatomic, assign, getter=isSetupDataSourceDone) BOOL setupDataSourceDone;

@@ -9,7 +9,7 @@
 #import "FormPortionTableViewCellData.h"
 
 @implementation FormPortionTableViewCellData
-@synthesize tag, contentIdentifier, type, title, subTitle, subTitle2, intDataHolder, cellHeight, mainUIControlSelector, selectorTarget, securedTextField, uiState, state, validationError, gpsEnabled, resetControlUI;
+@synthesize tag, contentIdentifier, type, title, subTitle, subTitle2, intDataHolder, cellHeight, mainUIControlSelector, mainUIControlDelegate, securedTextField, uiState, state, validationError, gpsEnabled, resetControlUI;
 
 - (NSString *)description
 {

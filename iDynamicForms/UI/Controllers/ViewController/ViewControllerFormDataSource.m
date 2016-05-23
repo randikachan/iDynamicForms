@@ -21,6 +21,7 @@
 
 @interface ViewControllerFormDataSource () {
     DynamicTableManager *dynamicManager;
+    NSMutableDictionary *dataDic;
 }
 
 @end
@@ -35,6 +36,7 @@
         self.viewController = viewController;
         self.setupDataSourceDone = false;
         self.setTableViewCellsClearColor = false;
+        dataDic = [[NSMutableDictionary alloc] init];
     }
     
     return self;
@@ -67,6 +69,8 @@
     dataObj.title = @"First Name:";
     dataObj.cellHeight = CELL_TEXT_FIELD_HEIGHT;
     dataObj.uiState = YES;
+    dataObj.mainUIControlSelector = @"firstNameValueChanged:";
+    dataObj.mainUIControlDelegate = self;
     
     [manager insertAfterKey:CELL_HEAD_TITLE object:dataObj forKey:CELL_FIRST_NAME];
 
@@ -77,6 +81,8 @@
     dataObj.title = @"Second Name:";
     dataObj.cellHeight = CELL_TEXT_FIELD_HEIGHT;
     dataObj.uiState = YES;
+    dataObj.mainUIControlSelector = @"secondNameValueChanged:";
+    dataObj.mainUIControlDelegate = self;
     
     [manager insertAfterKey:CELL_FIRST_NAME object:dataObj forKey:CELL_SECOND_NAME];
     
@@ -87,6 +93,8 @@
     dataObj.title = @"Email:";
     dataObj.cellHeight = CELL_TEXT_FIELD_HEIGHT;
     dataObj.uiState = YES;
+    dataObj.mainUIControlSelector = @"emailValueChanged:";
+    dataObj.mainUIControlDelegate = self;
     
     [manager insertAfterKey:CELL_SECOND_NAME object:dataObj forKey:CELL_EMAIL];
     
@@ -98,6 +106,8 @@
     dataObj.cellHeight = CELL_TEXT_FIELD_HEIGHT;
     dataObj.uiState = YES;
     dataObj.securedTextField = YES;
+    dataObj.mainUIControlSelector = @"passwordValueChanged:";
+    dataObj.mainUIControlDelegate = self;
     
     [manager insertAfterKey:CELL_EMAIL object:dataObj forKey:CELL_PASSWORD];
     
@@ -122,8 +132,8 @@
     dataObj.title = @"Sign Up";
     dataObj.cellHeight = CELL_BUTTON_HEIGHT;
     dataObj.uiState = YES;
-    dataObj.mainUIControlSelector = @"signUpBtnAction";
-    dataObj.selectorTarget = self;
+    dataObj.mainUIControlSelector = @"formButtonAction:";
+    dataObj.mainUIControlDelegate = self;
     
     [manager insertAfterKey:CELL_SUBSCRIBE object:dataObj forKey:CELL_SIGN_UP_BUTTON];
     
@@ -153,7 +163,7 @@
     dataObj.cellHeight = CELL_LINK_HEIGHT;
     dataObj.uiState = YES;
     dataObj.mainUIControlSelector = @"linkBtnActions:";
-    dataObj.selectorTarget = self.viewController;
+    dataObj.mainUIControlDelegate = self.viewController;
     
     [manager insertAfterKey:CELL_EMPTY_CELL2 object:dataObj forKey:CELL_TERMS_LINK];
     
@@ -179,10 +189,6 @@
     dataObj.uiState = NO;
     
     return dataObj;
-}
-
-- (void) signUpBtnAction {
-    NSLog(@"sign up button clicked");
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView formTableCellForRowAtIndexPath:(NSIndexPath *)indexPath withDynamicTableManager:(DynamicTableManager *)manager {
@@ -229,7 +235,7 @@
                 UIButton *button = (UIButton *) cellBtn.tblVwCellButton;
                 if (data.mainUIControlSelector) {
                     SEL customSelector = NSSelectorFromString(data.mainUIControlSelector);
-                    [button addTarget:data.selectorTarget action:customSelector forControlEvents:UIControlEventTouchUpInside];
+                    [button addTarget:data.mainUIControlDelegate action:customSelector forControlEvents:UIControlEventTouchUpInside];
                 } else {
                     [button addTarget:self action:@selector(formButtonAction:) forControlEvents:UIControlEventTouchUpInside];
                 }
@@ -296,7 +302,7 @@
                 
                 if (data.mainUIControlSelector) {
                     SEL customSelector = NSSelectorFromString(data.mainUIControlSelector);
-                    [cellLink.btnLink addTarget:data.selectorTarget action:customSelector forControlEvents:UIControlEventTouchUpInside];
+                    [cellLink.btnLink addTarget:data.mainUIControlDelegate action:customSelector forControlEvents:UIControlEventTouchUpInside];
                 } else {
                     [cellLink.btnLink addTarget:self.viewController action:@selector(linkBtnActions:) forControlEvents:UIControlEventTouchUpInside];
                 }
@@ -359,6 +365,12 @@
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:textFieldCellId owner:nil options:nil];
                 cellTextField = [nib objectAtIndex:0];
                 
+                cellTextField.txtFldDetail.delegate = data.mainUIControlDelegate;
+                if (data.mainUIControlSelector) {
+                    SEL customSelector = NSSelectorFromString(data.mainUIControlSelector);
+                    [cellTextField.txtFldDetail addTarget:data.mainUIControlDelegate action:customSelector forControlEvents:UIControlEventEditingChanged];
+                }
+                
                 if (data.title != nil && [data.title length] > 0) {
                     [cellTextField.lblTitle setText:data.title];
                 }
@@ -403,17 +415,30 @@
 
 #pragma mark Form User Entered Data handling
 - (NSDictionary *) collectData {
-    NSMutableDictionary *dataDic = [[NSMutableDictionary alloc] init];
-    NSString *firstName = [dynamicManager getDataStringFromTextFieldForCellKey:CELL_FIRST_NAME];
-    [dataDic setObject:firstName forKey:CELL_FIRST_NAME];
-    NSString *secondName = [dynamicManager getDataStringFromTextFieldForCellKey:CELL_SECOND_NAME];
-    [dataDic setObject:secondName forKey:CELL_SECOND_NAME];
     NSString *email = [dynamicManager getDataStringFromTextFieldForCellKey:CELL_EMAIL];
     [dataDic setObject:email forKey:CELL_EMAIL];
-    NSString *password = [dynamicManager getDataStringFromTextFieldForCellKey:CELL_PASSWORD];
-    [dataDic setObject:password forKey:CELL_PASSWORD];
     BOOL subscribe = [dynamicManager getBooleanFromSwitchForCellKey:CELL_SUBSCRIBE];
     [dataDic setObject:[NSNumber numberWithBool:subscribe]  forKey:CELL_SUBSCRIBE];
     return dataDic;
+}
+
+- (void) signUpBtnAction {
+    NSLog(@"sign up button clicked");
+}
+
+- (void) firstNameValueChanged:(UITextField *) sender {
+    [dataDic setObject:[sender text] forKey:CELL_FIRST_NAME];
+}
+
+- (void) secondNameValueChanged:(UITextField *) sender {
+    [dataDic setObject:[sender text] forKey:CELL_SECOND_NAME];
+}
+
+- (void) emailValueChanged:(UITextField *) sender {
+    [dataDic setObject:[sender text] forKey:CELL_EMAIL];
+}
+
+- (void) passwordValueChanged:(UITextField *) sender {
+    [dataDic setObject:[sender text] forKey:CELL_PASSWORD];
 }
 @end
