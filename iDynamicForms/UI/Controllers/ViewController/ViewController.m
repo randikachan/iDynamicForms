@@ -30,8 +30,13 @@
     self.mArrFormContentIdentifiersOrder = [[NSMutableArray alloc] init];
     self.mDicFormContentTableData = [[NSMutableDictionary alloc] init];
     
-    dataSource = [[ViewControllerFormDataSource alloc] initWithTableViewFormContainer:self.tableViewFormContainer inViewController:self];
-    tableManager = [[DynamicTableManager alloc] initWithContentIdentifiersArray:self.mArrFormContentIdentifiersOrder andContentDictionary:self.mDicFormContentTableData andTableView:self.tableViewFormContainer];
+    dataSource = [[ViewControllerFormDataSource alloc] initWithTableViewFormContainer:self.tableViewFormContainer
+                                                                     inViewController:self];
+    
+    tableManager = [[DynamicTableManager alloc] initWithContentIdentifiersArray:self.mArrFormContentIdentifiersOrder
+                                                           andContentDictionary:self.mDicFormContentTableData
+                                                                   andTableView:self.tableViewFormContainer];
+    
     [dataSource setupDataSourceForViewControllerWithConfiguration:nil withDynamicTableManager:tableManager];
 }
 
@@ -60,11 +65,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [dataSource tableView:tableView formTableCellForRowAtIndexPath:indexPath withDynamicTableManager:tableManager];
-}
-
-#pragma mark UI Control Actions
-- (void)linkBtnActions:(id)sender {
-    NSLog(@"link clicked");
 }
 
 @end

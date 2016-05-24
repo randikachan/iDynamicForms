@@ -236,7 +236,7 @@
                 if (data.mainUIControlSelector) {
                     SEL customSelector = NSSelectorFromString(data.mainUIControlSelector);
                     [button addTarget:data.mainUIControlDelegate action:customSelector forControlEvents:UIControlEventTouchUpInside];
-                } else {
+                } else if ([self respondsToSelector:@selector(formButtonAction:)]) {
                     [button addTarget:self action:@selector(formButtonAction:) forControlEvents:UIControlEventTouchUpInside];
                 }
                 
@@ -277,6 +277,7 @@
                 if (data.title != nil && [data.title length] > 0) {
                     [cellHint.txtVwDescription setText:data.title];
                 }
+                
                 [cellHint.txtVwDescription setEditable:data.isEnabled];
                 [cellHint.txtVwDescription setSelectable:data.isEnabled];
                 // [cellHint.txtVwDescription setScrollEnabled:data.isEnabled];
@@ -302,9 +303,11 @@
                 
                 if (data.mainUIControlSelector) {
                     SEL customSelector = NSSelectorFromString(data.mainUIControlSelector);
-                    [cellLink.btnLink addTarget:data.mainUIControlDelegate action:customSelector forControlEvents:UIControlEventTouchUpInside];
-                } else {
-                    [cellLink.btnLink addTarget:self.viewController action:@selector(linkBtnActions:) forControlEvents:UIControlEventTouchUpInside];
+                    if ([data.mainUIControlDelegate respondsToSelector:customSelector]) {
+                        [cellLink.btnLink addTarget:data.mainUIControlDelegate action:customSelector forControlEvents:UIControlEventTouchUpInside];
+                    }
+                } else if ([self respondsToSelector:@selector(linkBtnActions:)]) {
+                    [cellLink.btnLink addTarget:self action:@selector(linkBtnActions:) forControlEvents:UIControlEventTouchUpInside];
                 }
                 
                 [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
@@ -319,7 +322,16 @@
             if (cellSwitch == nil || data.resetControlUI) {
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:switchCellID owner:nil options:nil];
                 cellSwitch = [nib objectAtIndex:0];
-                [cellSwitch.switchChoice addTarget:self action:@selector(changeSwitchState:) forControlEvents:UIControlEventValueChanged];
+                
+                if (data.mainUIControlSelector) {
+                    SEL customSelector = NSSelectorFromString(data.mainUIControlSelector);
+                    if ([data.mainUIControlDelegate respondsToSelector:customSelector]) {
+                            [cellSwitch.switchChoice addTarget:data.mainUIControlDelegate action:@selector(customSelector) forControlEvents:UIControlEventValueChanged];
+                    }
+                } else if ([self respondsToSelector:@selector(changeSwitchState:)]) {
+                    [cellSwitch.switchChoice addTarget:self action:@selector(changeSwitchState:) forControlEvents:UIControlEventValueChanged];
+                }
+                
                 [cellSwitch.switchChoice setTag:data.tag];
                 
                 [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
@@ -368,7 +380,9 @@
                 cellTextField.txtFldDetail.delegate = data.mainUIControlDelegate;
                 if (data.mainUIControlSelector) {
                     SEL customSelector = NSSelectorFromString(data.mainUIControlSelector);
-                    [cellTextField.txtFldDetail addTarget:data.mainUIControlDelegate action:customSelector forControlEvents:UIControlEventEditingChanged];
+                    if ([data.mainUIControlDelegate respondsToSelector:customSelector]) {
+                        [cellTextField.txtFldDetail addTarget:data.mainUIControlDelegate action:customSelector forControlEvents:UIControlEventEditingChanged];
+                    }
                 }
                 
                 if (data.title != nil && [data.title length] > 0) {
@@ -420,6 +434,10 @@
     BOOL subscribe = [dynamicManager getBooleanFromSwitchForCellKey:CELL_SUBSCRIBE];
     [dataDic setObject:[NSNumber numberWithBool:subscribe]  forKey:CELL_SUBSCRIBE];
     return dataDic;
+}
+
+- (void)linkBtnActions:(UIButton *)sender {
+    NSLog(@"link clicked");
 }
 
 - (void) signUpBtnAction {

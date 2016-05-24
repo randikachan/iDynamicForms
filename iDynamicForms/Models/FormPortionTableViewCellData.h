@@ -24,7 +24,7 @@
 @property (nonatomic, assign) NSInteger tag;
 // Specific String ID will be assigned at the iniialization and it can be used to traverse the array of data objects
 @property (nonatomic, assign) NSString *contentIdentifier;
-@property (nonatomic, assign) int type;     //  1 for title with switch, 2 for description, 3 for button
+@property (nonatomic, assign) int type; //  1 for title with switch, 2 for description, 3 for button
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *subTitle;
 @property (nonatomic, strong) NSString *subTitle2;
@@ -36,9 +36,8 @@
 
 @property (nonatomic, assign, getter=isSecuredTextField) BOOL securedTextField;   // Whether a textField's text is secured text or not
 @property (nonatomic, assign, getter=isEnabled) BOOL uiState;   // Switch enabled or disabled
-@property (nonatomic, assign, getter=isTurnedOn) BOOL state;   //  Switch ON/OFF
+@property (nonatomic, assign, getter=isTurnedOn) BOOL state;    //  Switch ON/OFF
 @property (nonatomic, assign, getter=isInvalid) BOOL validationError;   // True/False upon data validation
-@property (nonatomic, assign, getter=isGPSEnabled) BOOL gpsEnabled;   // True/False upon data validation
 @property (nonatomic, assign, getter=shouldResetControl) BOOL resetControlUI;   // True/False upon data validation
 
 @end
