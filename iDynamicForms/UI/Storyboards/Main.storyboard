@@ -21,19 +21,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Uka-5B-ZNK">
                                 <rect key="frame" x="0.0" y="10" width="600" height="580"/>
                                 <color key="backgroundColor" red="0.54117647059999996" green="0.019607843140000001" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="400" id="dlI-We-C95"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="dlI-We-C95"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="dlI-We-C95"/>
-                                    </mask>
-                                </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="VRP-c4-TFI"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="eBM-dq-hku"/>
@@ -42,40 +29,27 @@
                         </subviews>
                         <color key="backgroundColor" red="0.54117647058823526" green="0.019607843137254902" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="Uka-5B-ZNK" secondAttribute="trailing" constant="-20" id="EKb-FH-4w3"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Uka-5B-ZNK" secondAttribute="bottom" constant="8" id="cT0-Na-aAK">
-                                <variation key="heightClass=compact" constant="0.0"/>
+                            <constraint firstItem="Uka-5B-ZNK" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="C1A-Tn-6aT">
+                                <variation key="heightClass=regular-widthClass=compact" constant="10"/>
                             </constraint>
-                            <constraint firstItem="Uka-5B-ZNK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ffk-Ew-Xkk"/>
-                            <constraint firstItem="Uka-5B-ZNK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="gRf-KH-Vix"/>
-                            <constraint firstItem="Uka-5B-ZNK" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="h0B-IP-iqN"/>
-                            <constraint firstItem="Uka-5B-ZNK" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="qKR-BL-vFi"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Uka-5B-ZNK" secondAttribute="bottom" id="xSc-EC-khN"/>
+                            <constraint firstItem="Uka-5B-ZNK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="f1V-6D-ABC"/>
+                            <constraint firstItem="Uka-5B-ZNK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nnW-O7-vfV"/>
+                            <constraint firstItem="Uka-5B-ZNK" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="xLF-98-PTX"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="EKb-FH-4w3"/>
-                                <exclude reference="ffk-Ew-Xkk"/>
-                                <exclude reference="gRf-KH-Vix"/>
-                                <exclude reference="h0B-IP-iqN"/>
-                                <exclude reference="qKR-BL-vFi"/>
-                                <exclude reference="cT0-Na-aAK"/>
-                                <exclude reference="xSc-EC-khN"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=compact">
-                            <mask key="constraints">
-                                <include reference="EKb-FH-4w3"/>
-                                <include reference="gRf-KH-Vix"/>
-                                <include reference="h0B-IP-iqN"/>
-                                <include reference="cT0-Na-aAK"/>
+                                <exclude reference="C1A-Tn-6aT"/>
+                                <exclude reference="f1V-6D-ABC"/>
+                                <exclude reference="nnW-O7-vfV"/>
+                                <exclude reference="xLF-98-PTX"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="constraints">
-                                <include reference="ffk-Ew-Xkk"/>
-                                <include reference="qKR-BL-vFi"/>
-                                <include reference="xSc-EC-khN"/>
+                                <include reference="C1A-Tn-6aT"/>
+                                <include reference="f1V-6D-ABC"/>
+                                <include reference="nnW-O7-vfV"/>
+                                <include reference="xLF-98-PTX"/>
                             </mask>
                         </variation>
                     </view>
