@@ -46,6 +46,11 @@
 #define CELL_TEXT_VIEW_HEIGHT   80.0
 #define CELL_TEXT_FIELD_HEIGHT  70.0
 
+#define CONTENT_ID              @"CONTENT_ID"
+#define STR_PREFIX              @"strValue"
+#define INT_PREFIX              @"intValue"
+#define FLOAT_PREFIX            @"floatValue"
+#define BOOL_PREFIX             @"boolValues"
 @interface Config : NSObject
 
 @end

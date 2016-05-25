@@ -19,25 +19,35 @@
 #define TYPE_BUTTON     7
 #define TYPE_EMPTY      8
 
-@interface FormPortionTableViewCellData : NSObject
+@interface FormPortionTableViewCellData : NSObject <NSCoding>
 
-@property (nonatomic, assign) NSInteger tag;
+#pragma mark Cell Meta Data
+@property (nonatomic, assign) int tag;
 // Specific String ID will be assigned at the iniialization and it can be used to traverse the array of data objects
-@property (nonatomic, assign) NSString *contentIdentifier;
+@property (nonatomic, strong) NSString *contentIdentifier;
 @property (nonatomic, assign) int type; //  1 for title with switch, 2 for description, 3 for button
+
+#pragma mark Cell-UIControl Configuration
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *subTitle;
 @property (nonatomic, strong) NSString *subTitle2;
-@property (nonatomic, assign) NSInteger intDataHolder;
 @property (nonatomic, assign) CGFloat cellHeight;
-// can pass a custom selector(method) which will be assigned as the target of the UI Control within the cell
-@property (nonatomic, strong) NSString *mainUIControlSelector;
-@property (nonatomic,strong) id mainUIControlDelegate;
-
 @property (nonatomic, assign, getter=isSecuredTextField) BOOL securedTextField;   // Whether a textField's text is secured text or not
 @property (nonatomic, assign, getter=isEnabled) BOOL uiState;   // Switch enabled or disabled
 @property (nonatomic, assign, getter=isTurnedOn) BOOL state;    //  Switch ON/OFF
 @property (nonatomic, assign, getter=isInvalid) BOOL validationError;   // True/False upon data validation
 @property (nonatomic, assign, getter=shouldResetControl) BOOL resetControlUI;   // True/False upon data validation
+
+#pragma mark Cell-UIControl actions and delegates
+// can pass a custom selector(method) which will be assigned as the target of the UI Control within the cell
+@property (nonatomic, strong) NSString *mainUIControlSelector;
+@property (nonatomic,strong) id mainUIControlDelegate;
+
+#pragma mark Cell-UIControl user interactive data
+@property (nonatomic, assign, getter=shouldPrintData) BOOL printData;
+@property (nonatomic, strong) NSString* stringDataHolder;
+@property (nonatomic, assign) int intDataHolder;
+@property (nonatomic, assign) BOOL boolDataHolder;
+@property (nonatomic, assign) float floatDataHolder;
 
 @end
