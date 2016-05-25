@@ -39,6 +39,10 @@
 
 - (UITableViewCell *) getFormCellForKey:(NSString *)forKey forKindOfClass:(Class)aClass;
 
+- (void) keepInUserDefaults:(FormPortionTableViewCellData *)cellData forKey:(NSString *) forKey;
+
+- (FormPortionTableViewCellData *) getCellDataFromUserDefaultsForKey:(NSString *)forKey;
+
 - (NSString *) getDataStringFromTextFieldForCellKey:(NSString *)forKey;
 
 - (NSString *) getDataStringFromTextViewForCellKey:(NSString *)forKey;

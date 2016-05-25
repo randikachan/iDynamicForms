@@ -22,7 +22,6 @@
 @interface ViewControllerFormDataSource () {
     DynamicTableManager *dynamicManager;
     NSMutableDictionary *dataDic;
-    NSUserDefaults *userDefaults;
 }
 
 @end
@@ -178,7 +177,7 @@
     [manager insertAfterKey:CELL_TERMS_LINK object:dataObj forKey:CELL_EMPTY_CELL3];
     
     // In our form one of the dynamic behavior is, if user turns ON the subscribe switch then the message should be hidden
-    if ([[self getCellDataFromUserDefaultsForKey:CELL_SUBSCRIBE] boolDataHolder]) {
+    if ([[dynamicManager getCellDataFromUserDefaultsForKey:CELL_SUBSCRIBE] boolDataHolder]) {
         [dynamicManager removeObjectForKey:CELL_SUBSCRIBE_HINT];
     }
     
@@ -343,7 +342,7 @@
                 [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
             }
             
-            [cellSwitch.switchChoice setOn:[[self getCellDataFromUserDefaultsForKey:data.contentIdentifier] boolDataHolder]];
+            [cellSwitch.switchChoice setOn:[[dynamicManager getCellDataFromUserDefaultsForKey:data.contentIdentifier] boolDataHolder]];
             [cellSwitch.switchChoice setEnabled:data.isEnabled];
             
             if (!data.isEnabled) {
@@ -369,7 +368,7 @@
 //                cellProblem.txtVwDescription.inputAccessoryView = self.toolbarForKeyboard;
 //                cellProblem.txtVwDescription.delegate = self;
                 
-                [cellTextView.txtVwDescription setText:[[self getCellDataFromUserDefaultsForKey:data.contentIdentifier] stringDataHolder]];
+                [cellTextView.txtVwDescription setText:[[dynamicManager getCellDataFromUserDefaultsForKey:data.contentIdentifier] stringDataHolder]];
                 
                 [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
             }
@@ -394,7 +393,7 @@
                     }
                 }
                 
-                [cellTextField.txtFldDetail setText:[[self getCellDataFromUserDefaultsForKey:data.contentIdentifier] stringDataHolder]];
+                [cellTextField.txtFldDetail setText:[[dynamicManager getCellDataFromUserDefaultsForKey:data.contentIdentifier] stringDataHolder]];
                 
                 if (data.title != nil && [data.title length] > 0) {
                     [cellTextField.lblTitle setText:data.title];
@@ -437,7 +436,7 @@
             [cellData setState:NO];
             [cellData setBoolDataHolder:NO];
         }
-        [self keepInUserDefaults:cellData forKey:CELL_SUBSCRIBE];
+        [dynamicManager keepInUserDefaults:cellData forKey:CELL_SUBSCRIBE];
     }
     [self.formContainer reloadData];
 }
@@ -463,7 +462,7 @@
     [dataDic setObject:[sender text] forKey:CELL_FIRST_NAME];
     FormPortionTableViewCellData *cellData = [dynamicManager getFormPortionCellDataForKey:CELL_FIRST_NAME];
     cellData.stringDataHolder = [sender text];
-    [self keepInUserDefaults:cellData forKey:CELL_FIRST_NAME];
+    [dynamicManager keepInUserDefaults:cellData forKey:CELL_FIRST_NAME];
 //    NSLog(@"1 data: %@", [self getCellDataFromUserDefaultsForKey:CELL_FIRST_NAME]);
 }
 
@@ -472,14 +471,14 @@
     
     FormPortionTableViewCellData *cellData = [dynamicManager getFormPortionCellDataForKey:CELL_SECOND_NAME];
     cellData.stringDataHolder = [sender text];
-    [self keepInUserDefaults:cellData forKey:CELL_SECOND_NAME];
+    [dynamicManager keepInUserDefaults:cellData forKey:CELL_SECOND_NAME];
 }
 
 - (void) emailValueChanged:(UITextField *) sender {
     [dataDic setObject:[sender text] forKey:CELL_EMAIL];
     FormPortionTableViewCellData *cellData = [dynamicManager getFormPortionCellDataForKey:CELL_EMAIL];
     cellData.stringDataHolder = [sender text];
-    [self keepInUserDefaults:cellData forKey:CELL_EMAIL];
+    [dynamicManager keepInUserDefaults:cellData forKey:CELL_EMAIL];
 }
 
 - (void) passwordValueChanged:(UITextField *) sender {
@@ -487,24 +486,12 @@
     FormPortionTableViewCellData *cellData = [dynamicManager getFormPortionCellDataForKey:CELL_PASSWORD];
     cellData.stringDataHolder = [sender text];
     cellData.intDataHolder = 5;
-    [self keepInUserDefaults:cellData forKey:CELL_PASSWORD];
+    [dynamicManager keepInUserDefaults:cellData forKey:CELL_PASSWORD];
     
     /* // how to fetch and use data demo. To print only data, have to set the flag.
     cellData = [self getCellDataFromUserDefaultsForKey:CELL_PASSWORD];
     [cellData setPrintData:YES];
     NSLog(@"1 data: %@", cellData);
     */
-}
-
-#pragma mark Methods to maintain user entered data while UITableView reload
-- (void) keepInUserDefaults:(FormPortionTableViewCellData *)cellData forKey:(NSString *) forKey {
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:cellData];
-    [[NSUserDefaults standardUserDefaults] setObject:data forKey:forKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (FormPortionTableViewCellData *) getCellDataFromUserDefaultsForKey:(NSString *)forKey {
-    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:forKey];
-    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
 }
 @end

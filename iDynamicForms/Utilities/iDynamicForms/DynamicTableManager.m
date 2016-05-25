@@ -153,6 +153,24 @@
     }
 }
 
+/*
+ * Methods to maintain user entered data while UITableView reload
+ * Note: Some properties have been defined within "FormPortionTableViewCellData" class to hold the UIControl of the Cell related data.
+ * And also those are implemented to be compliant with the NSCoding protocol, so whenever we want we can write
+ * "FormPortionTableViewCellData" objects to a file or transmitted to another process, perhaps over a network
+ * For now I have added only 4 types of essential data holders, NSString, int, float, BOOL
+ */
+- (void) keepInUserDefaults:(FormPortionTableViewCellData *)cellData forKey:(NSString *) forKey {
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:cellData];
+    [[NSUserDefaults standardUserDefaults] setObject:data forKey:forKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (FormPortionTableViewCellData *) getCellDataFromUserDefaultsForKey:(NSString *)forKey {
+    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:forKey];
+    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+}
+
 #pragma mark - Data Accessor methods to Form UI (for the UITableViewCells, which are visible at the moment)
 - (NSString *) getDataStringFromTextFieldForCellKey:(NSString *)forKey {
     TextFieldTableViewCell *cell = (TextFieldTableViewCell *)[self getFormCellForKey:forKey forKindOfClass:TextFieldTableViewCell.class];
