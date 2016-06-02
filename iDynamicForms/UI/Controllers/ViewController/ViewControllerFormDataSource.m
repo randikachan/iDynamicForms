@@ -197,13 +197,15 @@
 - (UITableViewCell *) tableView:(UITableView *)tableView formTableCellForRowAtIndexPath:(NSIndexPath *)indexPath withDynamicTableManager:(DynamicTableManager *)manager {
 
     if (self.formContainer == tableView && [self isSetupDataSourceDone]) {
+        // If you want to do a lot of extra modifications and alterations to UITableViewCell and its included UIControls
+        // then dig into the following method "generateFormCellForRowAtIndexPath" in DynamicTableManager class.
         UITableViewCell *cell = [manager generateFormCellForRowAtIndexPath:indexPath forFormContainer:tableView];
-        
         if ([cell isKindOfClass:TextFieldTableViewCell.class]) {
-            // you can do additional customization to the cell within here, check it out uncommenting the following line.
-            // [cell setBackgroundColor:[UIColor grayColor]];
+            // You can do additional minor customization to the cell or UIControls within here, check it out uncommenting the
+            // following line. For Example see the bellow:
             
-            // NSLog(@"TextField");
+            // [cell setBackgroundColor:[UIColor grayColor]];
+            // [[((TextFieldTableViewCell *) cell) lblTitle] setBackgroundColor:[UIColor lightGrayColor]];
         }
         
         return cell;
