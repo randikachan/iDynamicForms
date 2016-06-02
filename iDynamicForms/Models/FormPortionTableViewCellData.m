@@ -38,6 +38,11 @@
 @synthesize floatDataHolder;
 @synthesize boolDataHolder;
 
+/**
+ * initWithEncoder and encodeWithCoder methods and its protocol implemented for
+ * Saving essential data parts of formPortionCellData objects in NSUserDefaults
+ * Related StackOverflow answer: http://stackoverflow.com/questions/2315948/how-to-store-custom-objects-in-nsuserdefaults
+ */
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if ((self = [super init])) {
         // Decode properties, other class vars
@@ -64,7 +69,7 @@
     if (self.contentIdentifier && self.printData) {
         string = [NSMutableString stringWithFormat:@"\ncellID:%@ data: {\n\t\tintDataHolder: %d,\n\t\tstringDataHolder: %@,\n\t\tboolDataHolder: %d,\n\t\tfloatDataHolder: %f\n\t}\n}", self.contentIdentifier, intDataHolder, stringDataHolder, boolDataHolder, floatDataHolder];
     } else {
-        string = [NSMutableString stringWithFormat:@"\nBASwitchData {\n\ttag: %ld,\n\tcontentIdentifier: %@,\n\ttype: %d,\n\ttitle: %@,\n\tsubTitle: %@,\n\tcellHeight: %f,\n\tuiState: %d,\n\tstate: %d,\n\tresetControlUI: %d,\n", (long)tag, contentIdentifier, type, title, subTitle, cellHeight, uiState, state, resetControlUI];
+        string = [NSMutableString stringWithFormat:@"\nFormPortionTableViewCellData {\n\ttag: %ld,\n\tcontentIdentifier: %@,\n\ttype: %d,\n\ttitle: %@,\n\tsubTitle: %@,\n\tcellHeight: %f,\n\tuiState: %d,\n\tstate: %d,\n\tresetControlUI: %d,\n", (long)tag, contentIdentifier, type, title, subTitle, cellHeight, uiState, state, resetControlUI];
         [string appendString:[NSMutableString stringWithFormat:@"\tuiControlActions: {\n\t\tsetSelector: %@ atTarget: %@\n\t},", (mainUIControlSelector) ? mainUIControlSelector : @"nil", (mainUIControlDelegate) ? mainUIControlDelegate : @"nil"]];
         [string appendString:[NSMutableString stringWithFormat:@"\n\tcellUIControlDataState: {\n\t\tintDataHolder: %d,\n\t\tstringDataHolder: %@,\n\t\tboolDataHolder: %d,\n\t\tfloatDataHolder: %f\n\t}\n}", intDataHolder, stringDataHolder, boolDataHolder, floatDataHolder]];
     }

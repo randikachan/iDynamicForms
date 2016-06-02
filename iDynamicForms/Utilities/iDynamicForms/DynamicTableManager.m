@@ -159,6 +159,7 @@
  * And also those are implemented to be compliant with the NSCoding protocol, so whenever we want we can write
  * "FormPortionTableViewCellData" objects to a file or transmitted to another process, perhaps over a network
  * For now I have added only 4 types of essential data holders, NSString, int, float, BOOL
+ * Related StackOverflow answer: http://stackoverflow.com/questions/2315948/how-to-store-custom-objects-in-nsuserdefaults
  */
 - (void) keepInUserDefaults:(FormPortionTableViewCellData *)cellData forKey:(NSString *) forKey {
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:cellData];
