@@ -22,6 +22,7 @@
 #define TAG_EMPTY_CELL1         11
 #define TAG_EMPTY_CELL2         12
 #define TAG_EMPTY_CELL3         13
+#define TAG_SIGN_IN_BUTTON      14
 
 // Cell content identifiers
 #define CELL_HEAD_TITLE          @"HeadTitleTableViewCell"
@@ -37,6 +38,7 @@
 #define CELL_EMPTY_CELL1         @"EmptyCell1TableViewCell"
 #define CELL_EMPTY_CELL2         @"EmptyCell2TableViewCell"
 #define CELL_EMPTY_CELL3         @"EmptyCell3TableViewCell"
+#define CELL_SIGN_IN_BUTTON      @"SignInButtonTableViewCell"
 
 // Height for each type of content cells
 #define CELL_EMPTY_HEIGHT       30.0
