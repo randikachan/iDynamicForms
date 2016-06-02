@@ -27,7 +27,6 @@
 @end
 
 @implementation ViewControllerFormDataSource
-@synthesize setTableViewCellsClearColor;
 
 - (id) initWithTableViewFormContainer:(UITableView *) container inViewController:(UIViewController *) viewController {
     self = [super init];
@@ -35,7 +34,6 @@
         self.formContainer = container;
         self.viewController = viewController;
         self.setupDataSourceDone = false;
-        self.setTableViewCellsClearColor = false;
         dataDic = [[NSMutableDictionary alloc] init];
     }
     
@@ -199,215 +197,16 @@
 - (UITableViewCell *) tableView:(UITableView *)tableView formTableCellForRowAtIndexPath:(NSIndexPath *)indexPath withDynamicTableManager:(DynamicTableManager *)manager {
 
     if (self.formContainer == tableView && [self isSetupDataSourceDone]) {
-        NSString *contentIdentifier = [[manager mArrFormContentIdentifiersOrder] objectAtIndex:indexPath.row];
-        FormPortionTableViewCellData *data = [[manager mDicFormContentTableData] objectForKey:contentIdentifier];
+        UITableViewCell *cell = [manager generateFormCellForRowAtIndexPath:indexPath forFormContainer:tableView];
         
-        HeadTitleTableViewCell *cellHeadTitle     = nil;
-        LinkTableViewCell *cellLink               = nil;
-        TextViewTableViewCell *cellTextView       = nil;
-        TextFieldTableViewCell *cellTextField     = nil;
-        SwitchesTableViewCell *cellSwitch         = nil;
-        ButtonTableViewCell *cellBtn              = nil;
-        HintTableViewCell *cellHint               = nil;
-        EmptyTableViewCell *cellEmpty             = nil;
-        
-        static NSString *headTitleCellId            = @"HeadTitleTableViewCell";
-        static NSString *linkCellId                 = @"LinkTableViewCell";
-        static NSString *textViewCellId             = @"TextViewTableViewCell";
-        static NSString *textFieldCellId            = @"TextFieldTableViewCell";
-        static NSString *hintCellId                 = @"HintTableViewCell";
-        static NSString *switchCellID               = @"SwitchesTableViewCell";
-        static NSString *buttonCellID               = @"ButtonTableViewCell";
-        static NSString *emptyCellID                = @"EmptyTableViewCell";
-        
-        if (data.type == TYPE_EMPTY) {
-            cellEmpty = (EmptyTableViewCell *)[tableView dequeueReusableCellWithIdentifier:emptyCellID];
-            if (cellEmpty == nil || data.resetControlUI) {
-                NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:emptyCellID owner:nil options:nil];
-                cellEmpty = [nibs objectAtIndex:0];
-                [cellEmpty setTag:data.tag];
-            }
+        if ([cell isKindOfClass:TextFieldTableViewCell.class]) {
+            // you can do additional customization to the cell within here, check it out uncommenting the following line.
+            // [cell setBackgroundColor:[UIColor grayColor]];
             
-            (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
-            
-            return cellEmpty;
-        } else if (data.type == TYPE_BUTTON) {
-            cellBtn = (ButtonTableViewCell *)[tableView dequeueReusableCellWithIdentifier:buttonCellID];
-            if (cellBtn == nil || data.resetControlUI) {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:buttonCellID owner:nil options:nil];
-                cellBtn = [nib objectAtIndex:0];
-                
-                UIButton *button = (UIButton *) cellBtn.tblVwCellButton;
-                if (data.mainUIControlSelector) {
-                    SEL customSelector = NSSelectorFromString(data.mainUIControlSelector);
-                    [button addTarget:data.mainUIControlDelegate action:customSelector forControlEvents:UIControlEventTouchUpInside];
-                } else if ([self respondsToSelector:@selector(formButtonAction:)]) {
-                    [button addTarget:self action:@selector(formButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-                }
-                
-                [button setTag:data.tag];
-                [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
-            }
-            
-            [cellBtn.tblVwCellButton setTitle:data.title forState:UIControlStateNormal];
-            [cellBtn bringSubviewToFront:cellBtn.tblVwCellButton];
-            
-            (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
-            [cellBtn setTag:indexPath.row];
-            [cellBtn setNeedsDisplay];
-            return cellBtn;
-        } else if (data.type == TYPE_HEAD_TITLE) {
-            cellHeadTitle = (HeadTitleTableViewCell *)[tableView dequeueReusableCellWithIdentifier:headTitleCellId];
-            if (cellHeadTitle == nil || data.resetControlUI) {
-                NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:headTitleCellId owner:nil options:nil];
-                cellHeadTitle = [nibs objectAtIndex:0];
-                
-                if (data.title != nil && [data.title length] > 0) {
-                    [cellHeadTitle.lblHeadTItle setText:data.title];
-                }
-                [cellHeadTitle.lblHeadTItle setTextColor:[UIColor redColor]];
-                [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
-            }
-            
-            (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
-            [cellHeadTitle setTag:indexPath.row];
-            [cellHeadTitle setNeedsDisplay];
-            return cellHeadTitle;
-        } else if (data.type == TYPE_HINT) {
-            cellHint = (HintTableViewCell *)[tableView dequeueReusableCellWithIdentifier:hintCellId];
-            if (cellHint == nil || data.resetControlUI) {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:hintCellId owner:nil options:nil];
-                cellHint = [nib objectAtIndex:0];
-                
-                if (data.title != nil && [data.title length] > 0) {
-                    [cellHint.txtVwDescription setText:data.title];
-                }
-                
-                [cellHint.txtVwDescription setEditable:data.isEnabled];
-                [cellHint.txtVwDescription setSelectable:data.isEnabled];
-                // [cellHint.txtVwDescription setScrollEnabled:data.isEnabled];
-
-                [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
-            }
-            
-            (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
-            [cellHint setTag:indexPath.row];
-            [cellHint setNeedsDisplay];
-
-            return cellHint;
-        } else if (data.type == TYPE_LINK) {
-            cellLink = (LinkTableViewCell *)[tableView dequeueReusableCellWithIdentifier:linkCellId];
-            if (cellLink == nil || data.resetControlUI) {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:linkCellId owner:nil options:nil];
-                cellLink = [nib objectAtIndex:0];
-                
-                if (data.title != nil && [data.title length] > 0) {
-                    [cellLink.btnLink setTitle:data.title forState:UIControlStateNormal];
-                }
-                [cellLink.btnLink setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-                
-                if (data.mainUIControlSelector) {
-                    SEL customSelector = NSSelectorFromString(data.mainUIControlSelector);
-                    if ([data.mainUIControlDelegate respondsToSelector:customSelector]) {
-                        [cellLink.btnLink addTarget:data.mainUIControlDelegate action:customSelector forControlEvents:UIControlEventTouchUpInside];
-                    }
-                } else if ([self respondsToSelector:@selector(linkBtnActions:)]) {
-                    [cellLink.btnLink addTarget:self action:@selector(linkBtnActions:) forControlEvents:UIControlEventTouchUpInside];
-                }
-                
-                [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
-            }
-            
-            (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
-            [cellLink setTag:indexPath.row];
-            [cellLink setNeedsDisplay];
-            return cellLink;
-        } else if (data.type == TYPE_SWITCH) {
-            cellSwitch = (SwitchesTableViewCell *)[tableView dequeueReusableCellWithIdentifier:switchCellID];
-            if (cellSwitch == nil || data.resetControlUI) {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:switchCellID owner:nil options:nil];
-                cellSwitch = [nib objectAtIndex:0];
-                
-                if (data.mainUIControlSelector) {
-                    SEL customSelector = NSSelectorFromString(data.mainUIControlSelector);
-                    if ([data.mainUIControlDelegate respondsToSelector:customSelector]) {
-                            [cellSwitch.switchChoice addTarget:data.mainUIControlDelegate action:@selector(customSelector) forControlEvents:UIControlEventValueChanged];
-                    }
-                } else if ([self respondsToSelector:@selector(changeSwitchState:)]) {
-                    [cellSwitch.switchChoice addTarget:self action:@selector(changeSwitchState:) forControlEvents:UIControlEventValueChanged];
-                }
-                
-                [cellSwitch.switchChoice setTag:data.tag];
-                
-                [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
-            }
-            
-            [cellSwitch.switchChoice setOn:[[dynamicManager getCellDataFromUserDefaultsForKey:data.contentIdentifier] boolDataHolder]];
-            [cellSwitch.switchChoice setEnabled:data.isEnabled];
-            
-            if (!data.isEnabled) {
-                cellSwitch.switchChoice.tintColor = [UIColor lightGrayColor];
-                cellSwitch.switchChoice.thumbTintColor = [UIColor lightGrayColor];
-            }
-            
-            [cellSwitch.lblSwitchTitle setText:data.title];
-            [cellSwitch.lblSwitchTitle setTextColor:[UIColor blackColor]];
-            
-            (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
-            [cellSwitch setTag:indexPath.row];
-            [cellSwitch setNeedsDisplay];
-            return cellSwitch;
-        } else if (data.type == TYPE_TEXTAREA) {
-            cellTextView = (TextViewTableViewCell *)[tableView dequeueReusableCellWithIdentifier:textViewCellId];
-            if (cellTextView == nil || data.resetControlUI) {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:textViewCellId owner:nil options:nil];
-                cellTextView = [nib objectAtIndex:0];
-                
-                [cellTextView.txtVwDescription setTag:data.tag];
-                [cellTextView.txtVwDescription setEditable:data.isEnabled];
-//                cellProblem.txtVwDescription.inputAccessoryView = self.toolbarForKeyboard;
-//                cellProblem.txtVwDescription.delegate = self;
-                
-                [cellTextView.txtVwDescription setText:[[dynamicManager getCellDataFromUserDefaultsForKey:data.contentIdentifier] stringDataHolder]];
-                
-                [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
-            }
-            
-            [cellTextView.lblTitle setText:data.title];
-            
-            (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
-            [cellTextView setTag:indexPath.row];
-            [cellTextView setNeedsDisplay];
-            return cellTextView;
-        } else if (data.type == TYPE_TEXTFIELD) {
-            cellTextField = (TextFieldTableViewCell *)[tableView dequeueReusableCellWithIdentifier:textFieldCellId];
-            if (cellTextField == nil || data.resetControlUI) {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:textFieldCellId owner:nil options:nil];
-                cellTextField = [nib objectAtIndex:0];
-                
-                cellTextField.txtFldDetail.delegate = data.mainUIControlDelegate;
-                if (data.mainUIControlSelector) {
-                    SEL customSelector = NSSelectorFromString(data.mainUIControlSelector);
-                    if ([data.mainUIControlDelegate respondsToSelector:customSelector]) {
-                        [cellTextField.txtFldDetail addTarget:data.mainUIControlDelegate action:customSelector forControlEvents:UIControlEventEditingChanged];
-                    }
-                }
-                
-                [cellTextField.txtFldDetail setText:[[dynamicManager getCellDataFromUserDefaultsForKey:data.contentIdentifier] stringDataHolder]];
-                
-                if (data.title != nil && [data.title length] > 0) {
-                    [cellTextField.lblTitle setText:data.title];
-                }
-                [cellTextField.txtFldDetail setSecureTextEntry:[data isSecuredTextField]];
-                
-                [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
-            }
-            
-            (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
-            [cellTextField setTag:indexPath.row];
-            [cellTextField setNeedsDisplay];
-            return cellTextField;
+            // NSLog(@"TextField");
         }
+        
+        return cell;
     } else {
         return nil;
     }

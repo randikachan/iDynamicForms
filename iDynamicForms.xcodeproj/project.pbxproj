@@ -27,6 +27,8 @@
 		304F29D71CE205FE007F776E /* EmptyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 304F29D61CE205FE007F776E /* EmptyTableViewCell.m */; };
 		307E44E01CE9E53600536EB0 /* dummy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 307E44DF1CE9E53600536EB0 /* dummy@2x.png */; };
 		307E44E21CE9E63A00536EB0 /* dummy_tblcl_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 307E44E11CE9E63A00536EB0 /* dummy_tblcl_bg@2x.png */; };
+		30B6C6A91CFFFC1B000D09E0 /* SegmentedControlTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B6C6A71CFFFC1B000D09E0 /* SegmentedControlTableViewCell.m */; };
+		30B6C6AA1CFFFC1B000D09E0 /* SegmentedControlTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30B6C6A81CFFFC1B000D09E0 /* SegmentedControlTableViewCell.xib */; };
 		30BFFE5D1CE3A54C00829880 /* HintTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30BFFE5B1CE3A54C00829880 /* HintTableViewCell.m */; };
 		30BFFE5E1CE3A54C00829880 /* HintTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30BFFE5C1CE3A54C00829880 /* HintTableViewCell.xib */; };
 		30BFFE601CE3A59700829880 /* LinkTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30BFFE5F1CE3A59700829880 /* LinkTableViewCell.xib */; };
@@ -77,6 +79,9 @@
 		304F29D61CE205FE007F776E /* EmptyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyTableViewCell.m; sourceTree = "<group>"; };
 		307E44DF1CE9E53600536EB0 /* dummy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dummy@2x.png"; sourceTree = "<group>"; };
 		307E44E11CE9E63A00536EB0 /* dummy_tblcl_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dummy_tblcl_bg@2x.png"; sourceTree = "<group>"; };
+		30B6C6A61CFFFC1B000D09E0 /* SegmentedControlTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentedControlTableViewCell.h; sourceTree = "<group>"; };
+		30B6C6A71CFFFC1B000D09E0 /* SegmentedControlTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentedControlTableViewCell.m; sourceTree = "<group>"; };
+		30B6C6A81CFFFC1B000D09E0 /* SegmentedControlTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SegmentedControlTableViewCell.xib; sourceTree = "<group>"; };
 		30BFFE5A1CE3A54C00829880 /* HintTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HintTableViewCell.h; sourceTree = "<group>"; };
 		30BFFE5B1CE3A54C00829880 /* HintTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HintTableViewCell.m; sourceTree = "<group>"; };
 		30BFFE5C1CE3A54C00829880 /* HintTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HintTableViewCell.xib; sourceTree = "<group>"; };
@@ -180,6 +185,7 @@
 				30BFFE651CE3A63300829880 /* SwitchesTableViewCell */,
 				30BFFE681CE3A6B800829880 /* TextViewTableViewCell */,
 				30BFFE761CE3AF7000829880 /* TextFieldTableViewCell */,
+				30B6C6AB1CFFFC22000D09E0 /* SegmentedControlTableViewCell */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -283,6 +289,16 @@
 				307E44DF1CE9E53600536EB0 /* dummy@2x.png */,
 			);
 			path = DummyImages;
+			sourceTree = "<group>";
+		};
+		30B6C6AB1CFFFC22000D09E0 /* SegmentedControlTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				30B6C6A61CFFFC1B000D09E0 /* SegmentedControlTableViewCell.h */,
+				30B6C6A71CFFFC1B000D09E0 /* SegmentedControlTableViewCell.m */,
+				30B6C6A81CFFFC1B000D09E0 /* SegmentedControlTableViewCell.xib */,
+			);
+			path = SegmentedControlTableViewCell;
 			sourceTree = "<group>";
 		};
 		30BFFE591CE3A51100829880 /* HintTableViewCell */ = {
@@ -407,6 +423,7 @@
 				304F29931CE1FA06007F776E /* Main.storyboard in Resources */,
 				304F29D11CE20444007F776E /* ButtonTableViewCell.xib in Resources */,
 				30BFFE601CE3A59700829880 /* LinkTableViewCell.xib in Resources */,
+				30B6C6AA1CFFFC1B000D09E0 /* SegmentedControlTableViewCell.xib in Resources */,
 				304F29921CE1FA06007F776E /* LaunchScreen.storyboard in Resources */,
 				304F29961CE1FA56007F776E /* Assets.xcassets in Resources */,
 			);
@@ -429,6 +446,7 @@
 				304F29C31CE1FE1A007F776E /* AppDelegate.m in Sources */,
 				30BFFE5D1CE3A54C00829880 /* HintTableViewCell.m in Sources */,
 				304F29AA1CE1FBDD007F776E /* DynamicTableManager.m in Sources */,
+				30B6C6A91CFFFC1B000D09E0 /* SegmentedControlTableViewCell.m in Sources */,
 				304F29A01CE1FB2C007F776E /* ViewControllerFormDataSource.m in Sources */,
 				304F29BE1CE1FDA8007F776E /* SwitchesTableViewCell.m in Sources */,
 				30BFFE691CE3AA0F00829880 /* ButtonTableViewCell.m in Sources */,

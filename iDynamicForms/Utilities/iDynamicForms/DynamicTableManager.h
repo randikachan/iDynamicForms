@@ -15,6 +15,7 @@
 @property (weak, nonatomic) UITableView *formContainer;
 @property (nonatomic, strong) NSMutableArray* mArrFormContentIdentifiersOrder;
 @property (nonatomic, strong) NSMutableDictionary* mDicFormContentTableData;
+@property (nonatomic, assign, getter=isSetTableViewCellsClearColor) BOOL setTableViewCellsClearColor;
 
 - (id) initWithContentIdentifiersArray:(NSMutableArray *)contentIdentifiers
                   andContentDictionary:(NSMutableDictionary *)contentDictionary
@@ -36,6 +37,8 @@
 - (NSIndexPath *) getIndexPathForKey: (NSString *) key;
 
 - (FormPortionTableViewCellData *) getFormPortionCellDataForKey: (NSString *) forKey;
+
+- (UITableViewCell *) generateFormCellForRowAtIndexPath:(NSIndexPath *) indexPath forFormContainer:(UITableView *)tableView;
 
 - (UITableViewCell *) getFormCellForKey:(NSString *)forKey forKindOfClass:(Class)aClass;
 
