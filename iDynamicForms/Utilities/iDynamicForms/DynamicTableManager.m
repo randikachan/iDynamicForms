@@ -421,8 +421,12 @@
 }
 
 - (FormPortionTableViewCellData *) getCellDataFromUserDefaultsForKey:(NSString *)forKey {
-    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:forKey];
-    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    if ([[[NSUserDefaults standardUserDefaults] dictionaryRepresentation].allKeys containsObject:forKey]) {
+        NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:forKey];
+        return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    } else {
+        return nil;
+    }
 }
 
 #pragma mark - Data Accessor methods to Form UI (for the UITableViewCells, which are visible at the moment)
