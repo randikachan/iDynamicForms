@@ -10,20 +10,22 @@
 
 // Tags for each interactive control within the cell.
 #define TAG_HEAD_TITLE          1
-#define TAG_FIRST_NAME          2
-#define TAG_SECOND_NAME         3
-#define TAG_EMAIL               4
-#define TAG_PASSWORD            5
-#define TAG_SUBSCRIBE_HINT      6
-#define TAG_SUBSCRIBE           7
-#define TAG_TERMS_LINK          8
-#define TAG_SIGN_UP_BUTTON      9
-#define TAG_EMPTY_CELL1         10
-#define TAG_EMPTY_CELL2         11
-#define TAG_EMPTY_CELL3         12
+#define TAG_SINGUP_OR_SINGIN_SEGMENTED_CONTROL 2
+#define TAG_FIRST_NAME          3
+#define TAG_SECOND_NAME         4
+#define TAG_EMAIL               5
+#define TAG_PASSWORD            6
+#define TAG_SUBSCRIBE_HINT      7
+#define TAG_SUBSCRIBE           8
+#define TAG_TERMS_LINK          9
+#define TAG_SIGN_UP_BUTTON      10
+#define TAG_EMPTY_CELL1         11
+#define TAG_EMPTY_CELL2         12
+#define TAG_EMPTY_CELL3         13
 
 // Cell content identifiers
 #define CELL_HEAD_TITLE          @"HeadTitleTableViewCell"
+#define CELL_ONLY_SEGMENTEDCNTRL @"SignUpORSignInTextFieldTableViewCell"
 #define CELL_FIRST_NAME          @"FirstNameTextFieldTableViewCell"
 #define CELL_SECOND_NAME         @"SecondNameTextFieldTableViewCell"
 #define CELL_EMAIL               @"EmailTextFieldTableViewCell"
@@ -45,6 +47,7 @@
 #define CELL_SWITCH_HEIGHT      44.0
 #define CELL_TEXT_VIEW_HEIGHT   80.0
 #define CELL_TEXT_FIELD_HEIGHT  70.0
+#define CELL_SEGMENTED_HEIGHT   44.0
 
 #define CONTENT_ID              @"CONTENT_ID"
 #define STR_PREFIX              @"strValue"

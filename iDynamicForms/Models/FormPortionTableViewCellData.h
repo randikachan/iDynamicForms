@@ -18,6 +18,7 @@
 #define TYPE_SWITCH     6
 #define TYPE_BUTTON     7
 #define TYPE_EMPTY      8
+#define TYPE_SEGMENTED  9
 
 @interface FormPortionTableViewCellData : NSObject <NSCoding>
 
@@ -31,6 +32,7 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *subTitle;
 @property (nonatomic, strong) NSString *subTitle2;
+@property (nonatomic, strong) NSArray *mArrSegmentedControlTitles;
 @property (nonatomic, assign) CGFloat cellHeight;
 @property (nonatomic, assign, getter=isSecuredTextField) BOOL securedTextField;   // Whether a textField's text is secured text or not
 @property (nonatomic, assign, getter=isEnabled) BOOL uiState;   // Switch enabled or disabled

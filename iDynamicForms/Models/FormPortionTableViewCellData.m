@@ -20,6 +20,7 @@
 @synthesize title;
 @synthesize subTitle;
 @synthesize subTitle2;
+@synthesize mArrSegmentedControlTitles;
 @synthesize cellHeight;
 @synthesize securedTextField;
 @synthesize uiState;

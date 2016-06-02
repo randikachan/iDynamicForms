@@ -22,6 +22,7 @@
 @interface ViewControllerFormDataSource () {
     DynamicTableManager *dynamicManager;
     NSMutableDictionary *dataDic;
+    BOOL showSignUpForm;
 }
 
 @end
@@ -35,6 +36,9 @@
         self.viewController = viewController;
         self.setupDataSourceDone = false;
         dataDic = [[NSMutableDictionary alloc] init];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:CELL_ONLY_SEGMENTEDCNTRL];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        showSignUpForm = true;
     }
     
     return self;
@@ -61,6 +65,19 @@
                                   initialFormContentAs:dataObj forKey:CELL_HEAD_TITLE];
     
     dataObj = [[FormPortionTableViewCellData alloc] init];
+    dataObj.tag = TAG_SINGUP_OR_SINGIN_SEGMENTED_CONTROL;
+    dataObj.type = TYPE_SEGMENTED;
+    dataObj.contentIdentifier = CELL_ONLY_SEGMENTEDCNTRL;
+    dataObj.mArrSegmentedControlTitles = [NSArray arrayWithObjects:@"Sign Up", @"Sign In", nil];
+    dataObj.cellHeight = CELL_SEGMENTED_HEIGHT;
+    dataObj.uiState = YES;
+    dataObj.mainUIControlSelector = @"toggleSignUpAndSignInForms:";
+    dataObj.mainUIControlDelegate = self;
+    
+    [manager insertAfterKey:CELL_HEAD_TITLE object:dataObj forKey:CELL_ONLY_SEGMENTEDCNTRL];
+    
+    if (showSignUpForm) {
+    dataObj = [[FormPortionTableViewCellData alloc] init];
     dataObj.tag = TAG_FIRST_NAME;
     dataObj.type = TYPE_TEXTFIELD;
     dataObj.contentIdentifier = CELL_FIRST_NAME;
@@ -70,7 +87,7 @@
     dataObj.mainUIControlSelector = @"firstNameValueChanged:";
     dataObj.mainUIControlDelegate = self;
     
-    [manager insertAfterKey:CELL_HEAD_TITLE object:dataObj forKey:CELL_FIRST_NAME];
+    [manager insertAfterKey:CELL_ONLY_SEGMENTEDCNTRL object:dataObj forKey:CELL_FIRST_NAME];
 
     dataObj = [[FormPortionTableViewCellData alloc] init];
     dataObj.tag = TAG_SECOND_NAME;
@@ -177,6 +194,71 @@
     // In our form one of the dynamic behavior is, if user turns ON the subscribe switch then the message should be hidden
     if ([[dynamicManager getCellDataFromUserDefaultsForKey:CELL_SUBSCRIBE] boolDataHolder]) {
         [dynamicManager removeObjectForKey:CELL_SUBSCRIBE_HINT];
+    }
+    } else {
+        dataObj = [[FormPortionTableViewCellData alloc] init];
+        dataObj.tag = TAG_EMPTY_CELL1;
+        dataObj.type = TYPE_EMPTY;
+        dataObj.contentIdentifier = CELL_EMPTY_CELL1;
+        dataObj.cellHeight = CELL_EMPTY_HEIGHT;
+        dataObj.uiState = YES;
+        
+        [manager insertAfterKey:CELL_ONLY_SEGMENTEDCNTRL object:dataObj forKey:CELL_EMPTY_CELL1];
+        
+        dataObj = [[FormPortionTableViewCellData alloc] init];
+        dataObj.tag = TAG_EMAIL;
+        dataObj.type = TYPE_TEXTFIELD;
+        dataObj.contentIdentifier = CELL_EMAIL;
+        dataObj.title = @"Email:";
+        dataObj.cellHeight = CELL_TEXT_FIELD_HEIGHT;
+        dataObj.uiState = YES;
+        dataObj.mainUIControlSelector = @"emailValueChanged:";
+        dataObj.mainUIControlDelegate = self;
+        
+        [manager insertAfterKey:CELL_EMPTY_CELL1 object:dataObj forKey:CELL_EMAIL];
+        
+        dataObj = [[FormPortionTableViewCellData alloc] init];
+        dataObj.tag = TAG_PASSWORD;
+        dataObj.type = TYPE_TEXTFIELD;
+        dataObj.contentIdentifier = CELL_PASSWORD;
+        dataObj.title = @"Password";
+        dataObj.cellHeight = CELL_TEXT_FIELD_HEIGHT;
+        dataObj.uiState = YES;
+        dataObj.securedTextField = YES;
+        dataObj.mainUIControlSelector = @"passwordValueChanged:";
+        dataObj.mainUIControlDelegate = self;
+        
+        [manager insertAfterKey:CELL_EMAIL object:dataObj forKey:CELL_PASSWORD];
+        
+        dataObj = [[FormPortionTableViewCellData alloc] init];
+        dataObj.tag = TAG_EMPTY_CELL2;
+        dataObj.type = TYPE_EMPTY;
+        dataObj.contentIdentifier = CELL_EMPTY_CELL2;
+        dataObj.cellHeight = CELL_EMPTY_HEIGHT;
+        dataObj.uiState = YES;
+        
+        [manager insertAfterKey:CELL_PASSWORD object:dataObj forKey:CELL_EMPTY_CELL2];
+        
+        dataObj = [[FormPortionTableViewCellData alloc] init];
+        dataObj.tag = TAG_SIGN_UP_BUTTON;
+        dataObj.type = TYPE_BUTTON;
+        dataObj.contentIdentifier = CELL_SIGN_UP_BUTTON;
+        dataObj.title = @"Sign Up";
+        dataObj.cellHeight = CELL_BUTTON_HEIGHT;
+        dataObj.uiState = YES;
+        dataObj.mainUIControlSelector = @"formButtonAction:";
+        dataObj.mainUIControlDelegate = self;
+        
+        [manager insertAfterKey:CELL_EMPTY_CELL2 object:dataObj forKey:CELL_SIGN_UP_BUTTON];
+        
+        dataObj = [[FormPortionTableViewCellData alloc] init];
+        dataObj.tag = TAG_EMPTY_CELL3;
+        dataObj.type = TYPE_EMPTY;
+        dataObj.contentIdentifier = CELL_EMPTY_CELL3;
+        dataObj.cellHeight = 450.0;
+        dataObj.uiState = YES;
+        
+        [manager insertAfterKey:CELL_SIGN_UP_BUTTON object:dataObj forKey:CELL_EMPTY_CELL3];
     }
     
     self.setupDataSourceDone = true;
@@ -294,5 +376,21 @@
     [cellData setPrintData:YES];
     NSLog(@"1 data: %@", cellData);
     */
+}
+
+- (void) toggleSignUpAndSignInForms:(UISegmentedControl *) sender {
+    if (sender.selectedSegmentIndex == 0) {
+        showSignUpForm = true;
+    } else {
+        showSignUpForm = false;
+    }
+    FormPortionTableViewCellData *cellData = [dynamicManager getFormPortionCellDataForKey:CELL_ONLY_SEGMENTEDCNTRL];
+    cellData.intDataHolder = (int)sender.selectedSegmentIndex;
+    [dynamicManager keepInUserDefaults:cellData forKey:CELL_ONLY_SEGMENTEDCNTRL];
+    
+    // We call the setupDataSource method because we need to reset the data source based on showSignUpForm
+    [self setupDataSourceForViewControllerWithConfiguration:nil withDynamicTableManager:dynamicManager];
+    // Reload the Form with the newly set data source.
+    [self.formContainer reloadData];
 }
 @end

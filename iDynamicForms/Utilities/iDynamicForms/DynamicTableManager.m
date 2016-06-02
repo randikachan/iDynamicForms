@@ -16,6 +16,7 @@
 #import "SwitchesTableViewCell.h"
 #import "ButtonTableViewCell.h"
 #import "EmptyTableViewCell.h"
+#import "SegmentedControlTableViewCell.h"
 
 @implementation DynamicTableManager
 @synthesize mArrFormContentIdentifiersOrder;
@@ -157,14 +158,15 @@
         NSString *contentIdentifier = [[self mArrFormContentIdentifiersOrder] objectAtIndex:indexPath.row];
         FormPortionTableViewCellData *data = [[self mDicFormContentTableData] objectForKey:contentIdentifier];
         
-        HeadTitleTableViewCell *cellHeadTitle     = nil;
-        LinkTableViewCell *cellLink               = nil;
-        TextViewTableViewCell *cellTextView       = nil;
-        TextFieldTableViewCell *cellTextField     = nil;
-        SwitchesTableViewCell *cellSwitch         = nil;
-        ButtonTableViewCell *cellBtn              = nil;
-        HintTableViewCell *cellHint               = nil;
-        EmptyTableViewCell *cellEmpty             = nil;
+        HeadTitleTableViewCell *cellHeadTitle               = nil;
+        LinkTableViewCell *cellLink                         = nil;
+        TextViewTableViewCell *cellTextView                 = nil;
+        TextFieldTableViewCell *cellTextField               = nil;
+        SwitchesTableViewCell *cellSwitch                   = nil;
+        ButtonTableViewCell *cellBtn                        = nil;
+        HintTableViewCell *cellHint                         = nil;
+        EmptyTableViewCell *cellEmpty                       = nil;
+        SegmentedControlTableViewCell *cellSegmentedControl = nil;
         
         static NSString *headTitleCellId            = @"HeadTitleTableViewCell";
         static NSString *linkCellId                 = @"LinkTableViewCell";
@@ -174,6 +176,7 @@
         static NSString *switchCellID               = @"SwitchesTableViewCell";
         static NSString *buttonCellID               = @"ButtonTableViewCell";
         static NSString *emptyCellID                = @"EmptyTableViewCell";
+        static NSString *segmentedControlCellID     = @"SegmentedControlTableViewCell";
         
         if (data.type == TYPE_EMPTY) {
             cellEmpty = (EmptyTableViewCell *)[tableView dequeueReusableCellWithIdentifier:emptyCellID];
@@ -186,6 +189,33 @@
             (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
             
             return cellEmpty;
+        } else if (data.type == TYPE_SEGMENTED) {
+            cellSegmentedControl = (SegmentedControlTableViewCell *)[tableView dequeueReusableCellWithIdentifier:segmentedControlCellID];
+            if (cellSegmentedControl == nil || data.resetControlUI) {
+                NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:segmentedControlCellID owner:nil options:nil];
+                cellSegmentedControl = [nibs objectAtIndex:0];
+                [cellSegmentedControl setTag:data.tag];
+                
+                if ([data mArrSegmentedControlTitles] != nil && [[data mArrSegmentedControlTitles] count] > 1) {
+                    [cellSegmentedControl.segmentedControl removeAllSegments];
+                    for (int i = 0; i < [[data mArrSegmentedControlTitles] count]; i++) {
+                        [cellSegmentedControl.segmentedControl insertSegmentWithTitle:[[data mArrSegmentedControlTitles] objectAtIndex:i]  atIndex:i animated:NO];
+                    }
+                    
+                    [cellSegmentedControl.segmentedControl setSelectedSegmentIndex:[[self getCellDataFromUserDefaultsForKey:data.contentIdentifier] intDataHolder]];
+                }
+                
+                if (data.mainUIControlSelector) {
+                    SEL customSelector = NSSelectorFromString(data.mainUIControlSelector);
+                    if ([data.mainUIControlDelegate respondsToSelector:customSelector]) {
+                        [cellSegmentedControl.segmentedControl addTarget:data.mainUIControlDelegate action:customSelector forControlEvents:UIControlEventValueChanged];
+                    }
+                }
+            }
+            
+            (self.isSetTableViewCellsClearColor) ? [cellSegmentedControl setBackgroundColor:[UIColor clearColor]] : nil;
+            
+            return cellSegmentedControl;
         } else if (data.type == TYPE_BUTTON) {
             cellBtn = (ButtonTableViewCell *)[tableView dequeueReusableCellWithIdentifier:buttonCellID];
             if (cellBtn == nil || data.resetControlUI) {
