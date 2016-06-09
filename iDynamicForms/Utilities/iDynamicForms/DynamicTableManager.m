@@ -226,8 +226,6 @@
                 if (data.mainUIControlSelector) {
                     SEL customSelector = NSSelectorFromString(data.mainUIControlSelector);
                     [button addTarget:data.mainUIControlDelegate action:customSelector forControlEvents:UIControlEventTouchUpInside];
-                } else if ([self respondsToSelector:@selector(formButtonAction:)]) {
-                    [button addTarget:self action:@selector(formButtonAction:) forControlEvents:UIControlEventTouchUpInside];
                 }
                 
                 [button setTag:data.tag];
@@ -296,8 +294,6 @@
                     if ([data.mainUIControlDelegate respondsToSelector:customSelector]) {
                         [cellLink.btnLink addTarget:data.mainUIControlDelegate action:customSelector forControlEvents:UIControlEventTouchUpInside];
                     }
-                } else if ([self respondsToSelector:@selector(linkBtnActions:)]) {
-                    [cellLink.btnLink addTarget:self action:@selector(linkBtnActions:) forControlEvents:UIControlEventTouchUpInside];
                 }
                 
                 [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
@@ -316,10 +312,8 @@
                 if (data.mainUIControlSelector) {
                     SEL customSelector = NSSelectorFromString(data.mainUIControlSelector);
                     if ([data.mainUIControlDelegate respondsToSelector:customSelector]) {
-                        [cellSwitch.switchChoice addTarget:data.mainUIControlDelegate action:@selector(customSelector) forControlEvents:UIControlEventValueChanged];
+                        [cellSwitch.switchChoice addTarget:data.mainUIControlDelegate action:customSelector forControlEvents:UIControlEventValueChanged];
                     }
-                } else if ([self respondsToSelector:@selector(changeSwitchState:)]) {
-                    [cellSwitch.switchChoice addTarget:self action:@selector(changeSwitchState:) forControlEvents:UIControlEventValueChanged];
                 }
                 
                 [cellSwitch.switchChoice setTag:data.tag];
@@ -423,7 +417,11 @@
 - (FormPortionTableViewCellData *) getCellDataFromUserDefaultsForKey:(NSString *)forKey {
     if ([[[NSUserDefaults standardUserDefaults] dictionaryRepresentation].allKeys containsObject:forKey]) {
         NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:forKey];
-        return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        if (data != NULL) {
+            return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        } else {
+            return nil;
+        }
     } else {
         return nil;
     }

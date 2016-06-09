@@ -137,6 +137,8 @@
         dataObj.title = @"Subscribe to emails:";
         dataObj.cellHeight = CELL_SWITCH_HEIGHT;
         dataObj.uiState = YES;
+        dataObj.mainUIControlSelector = @"changeSwitchState:";
+        dataObj.mainUIControlDelegate = self;
     
         [manager insertAfterKey:CELL_SUBSCRIBE_HINT object:dataObj forKey:CELL_SUBSCRIBE];
     
@@ -178,7 +180,7 @@
         dataObj.cellHeight = CELL_LINK_HEIGHT;
         dataObj.uiState = YES;
         dataObj.mainUIControlSelector = @"linkBtnActions:";
-        dataObj.mainUIControlDelegate = self.viewController;
+        dataObj.mainUIControlDelegate = self;
     
         [manager insertAfterKey:CELL_EMPTY_CELL2 object:dataObj forKey:CELL_TERMS_LINK];
     
@@ -333,10 +335,6 @@
 
 #pragma mark Form User Entered Data handling
 - (NSDictionary *) collectData {
-    NSString *email = [dynamicManager getDataStringFromTextFieldForCellKey:CELL_EMAIL];
-    [dataDic setObject:email forKey:CELL_EMAIL];
-    BOOL subscribe = [dynamicManager getBooleanFromSwitchForCellKey:CELL_SUBSCRIBE];
-    [dataDic setObject:[NSNumber numberWithBool:subscribe]  forKey:CELL_SUBSCRIBE];
     return dataDic;
 }
 
