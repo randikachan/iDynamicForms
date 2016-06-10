@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "FormPortionTableViewCellData.h"
 
-@interface DynamicTableManager : NSObject
+@interface DynamicTableManager : NSObject <UITextFieldDelegate>
 
 @property (weak, nonatomic) UITableView *formContainer;
 @property (nonatomic, strong) NSMutableArray* mArrFormContentIdentifiersOrder;

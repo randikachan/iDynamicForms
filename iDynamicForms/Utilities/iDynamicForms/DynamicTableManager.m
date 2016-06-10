@@ -17,8 +17,12 @@
 #import "ButtonTableViewCell.h"
 #import "EmptyTableViewCell.h"
 #import "SegmentedControlTableViewCell.h"
+#import "Config.h"
 
-@implementation DynamicTableManager
+@implementation DynamicTableManager {
+    NSString *currentCellID;
+}
+
 @synthesize mArrFormContentIdentifiersOrder;
 @synthesize mDicFormContentTableData;
 @synthesize formContainer;
@@ -38,7 +42,7 @@
     return self;
 }
 
-- (id)initWithContentIdentifiersArray:(NSMutableArray *)contentIdentifiers andContentDictionary:(NSMutableDictionary *)contentDictionary initialFormContentAs:(FormPortionTableViewCellData *)object forKey:(NSString *)forKey {
+- (id) initWithContentIdentifiersArray:(NSMutableArray *)contentIdentifiers andContentDictionary:(NSMutableDictionary *)contentDictionary initialFormContentAs:(FormPortionTableViewCellData *)object forKey:(NSString *)forKey {
     self = [super init];
     if (self) {
         mArrFormContentIdentifiersOrder = contentIdentifiers;
@@ -50,108 +54,7 @@
     return self;
 }
 
-/*
- * Initiate the datasource of the Form TableView with first data object of the dictionary for the given Key (which is ContentIdentifier of that cell).
- * We are maintaing an NSMutableArray to hold the order of the data object keys and NSMutableDictionary to hold the data objects for their
- * corresponding ContentIdentifier keys.
- */
-- (BOOL) initiateFormContentWithObject:(FormPortionTableViewCellData *)object forKey:(NSString *) forKey {
-    BOOL result = NO;
-    if ([mArrFormContentIdentifiersOrder count] == 0) {
-        mArrFormContentIdentifiersOrder = [[NSMutableArray alloc] initWithObjects:forKey, nil];
-        mDicFormContentTableData = [[NSMutableDictionary alloc] initWithObjects:[NSArray arrayWithObject:object] forKeys:[NSArray arrayWithObject:forKey]];
-        result = YES;
-    }
-    
-    return result;
-}
-
-/*
- * This method is used to add specific data object in between the DataSource, after a given data object (which specified by the key).
- * Basically this is the method we use to populate the whole dataSource after we initiate it useing "initiateFormContentWithObject" method.
- */
-- (BOOL) insertAfterKey:(NSString *) key object:(FormPortionTableViewCellData *) object forKey:(NSString *) forKey {
-    BOOL result = NO;
-    if ([mArrFormContentIdentifiersOrder count] > 0) {
-        int index = 0;
-        for (NSString *inKey in mArrFormContentIdentifiersOrder) {
-            index++;
-            if ([inKey isEqualToString:key]) {
-                [mArrFormContentIdentifiersOrder insertObject:forKey atIndex:index];
-                [mDicFormContentTableData setObject:object forKey:forKey];
-                result = YES;
-                break;
-            }
-        }
-    }
-    return result;
-}
-
-/*
- * Remove data object which is in datasource of the Form TableView, for the given Key (which is ContentIdentifier of that cell).
- */
-- (BOOL) removeObjectForKey:(NSString *) forKey {
-    BOOL result = NO;
-    int index = 0;
-    for (NSString *inKey in mArrFormContentIdentifiersOrder) {
-        if ([inKey isEqualToString:forKey]) {
-            [mArrFormContentIdentifiersOrder removeObjectAtIndex:index];
-            [mDicFormContentTableData removeObjectForKey:inKey];
-            result = YES;
-            break;
-        }
-        index++;
-    }
-    return result;
-}
-
-/*
- * Clear out the dataSource already filled in data.
- * if "forKey" parameter sent nil, then it will clear out the whole UI.
- */
-- (BOOL) resetDataSourceForKey:(NSString *) forKey {
-    BOOL result = NO;
-    int index = 0;
-    for (NSString *inKey in mArrFormContentIdentifiersOrder) {
-        if (forKey != nil) {
-            if ([inKey isEqualToString:forKey]) {
-                //  shouldResetControl flag might be reset to False by the CellForRowAtIndexPath method IF-Else blocks after clearing out the data in the UI.
-                [((FormPortionTableViewCellData *)[mDicFormContentTableData objectForKey:inKey]) setResetControlUI:YES];
-                NSIndexPath *indexPath = [self getIndexPathForKey:inKey];
-                [formContainer scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-                [formContainer reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
-                result = YES;
-                break;
-            }
-        } else {
-            //  shouldResetControl flag might be reset to False by the CellForRowAtIndexPath method IF-Else blocks after clearing out the data in the UI.
-            [((FormPortionTableViewCellData *)[mDicFormContentTableData objectForKey:inKey]) setResetControlUI:YES];
-            result = YES;
-        }
-        index++;
-    }
-    
-    if (forKey == nil) {
-        [formContainer reloadData];
-    }
-    
-    return result;
-}
-
-/*
- * Get the indexPath of the Form TableView Cell when its correspondent key is given
- */
-- (NSIndexPath *) getIndexPathForKey: (NSString *) key {
-    NSInteger row = [mArrFormContentIdentifiersOrder indexOfObject:key];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
-    return indexPath;
-}
-
-- (FormPortionTableViewCellData *) getFormPortionCellDataForKey: (NSString *) forKey {
-    return [mDicFormContentTableData objectForKey:forKey];
-}
-
-
+#pragma mark UITableViewCell cellForRowAtIndexPath
 - (UITableViewCell *) generateFormCellForRowAtIndexPath:(NSIndexPath *) indexPath forFormContainer:(UITableView *)tableView {
     
     if (self.formContainer == tableView) {
@@ -188,6 +91,7 @@
             
             (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
             
+            [cellEmpty setTag:indexPath.row];
             return cellEmpty;
         } else if (data.type == TYPE_SEGMENTED) {
             cellSegmentedControl = (SegmentedControlTableViewCell *)[tableView dequeueReusableCellWithIdentifier:segmentedControlCellID];
@@ -215,6 +119,8 @@
             
             (self.isSetTableViewCellsClearColor) ? [cellSegmentedControl setBackgroundColor:[UIColor clearColor]] : nil;
             
+            [cellSegmentedControl setTag:indexPath.row];
+            [cellSegmentedControl setNeedsDisplay];
             return cellSegmentedControl;
         } else if (data.type == TYPE_BUTTON) {
             cellBtn = (ButtonTableViewCell *)[tableView dequeueReusableCellWithIdentifier:buttonCellID];
@@ -364,7 +270,8 @@
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:textFieldCellId owner:nil options:nil];
                 cellTextField = [nib objectAtIndex:0];
                 
-                cellTextField.txtFldDetail.delegate = data.mainUIControlDelegate;
+                [cellTextField.txtFldDetail setTag:data.tag];
+                cellTextField.txtFldDetail.delegate = self; //data.mainUIControlDelegate;
                 if (data.mainUIControlSelector) {
                     SEL customSelector = NSSelectorFromString(data.mainUIControlSelector);
                     if ([data.mainUIControlDelegate respondsToSelector:customSelector]) {
@@ -391,6 +298,166 @@
     return nil;
 }
 
+#pragma mark UITextField Delegate methods
+- (void) textFieldDidBeginEditing:(UITextField *)textField {
+    FormPortionTableViewCellData *cellData = [self getCellDataForGivenTag:(int)[textField tag]];
+    currentCellID = [cellData contentIdentifier];
+}
+
+- (BOOL) textFieldShouldReturn:(UITextField *)textField {
+    FormPortionTableViewCellData *nextCellData = [self getNextTextFieldCellForGivenCurrentTextFieldCellKey:currentCellID];
+    if (!nextCellData) { // which means there is no any textFields in the form so should hide the keyboard
+        [formContainer scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+        [textField resignFirstResponder];
+        return YES;
+    } else {
+        // Note: within the "generateFormCellForRowAtIndexPath" method, all the custom UITableViewCells have assigned
+        // indexPath.row as the tag of the cell.
+        NSUInteger tag = [mArrFormContentIdentifiersOrder indexOfObject:[nextCellData contentIdentifier]];
+        [formContainer scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:tag inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        TextFieldTableViewCell *nextTextField = (TextFieldTableViewCell *)[formContainer viewWithTag:tag];
+        [nextTextField.txtFldDetail becomeFirstResponder];
+        return NO;
+    }
+}
+
+#pragma mark Form DataSource methods
+/*
+ * Initiate the datasource of the Form TableView with first data object of the dictionary for the given Key (which is ContentIdentifier of that cell).
+ * We are maintaing an NSMutableArray to hold the order of the data object keys and NSMutableDictionary to hold the data objects for their
+ * corresponding ContentIdentifier keys.
+ */
+- (BOOL) initiateFormContentWithObject:(FormPortionTableViewCellData *)object forKey:(NSString *) forKey {
+    BOOL result = NO;
+    if ([mArrFormContentIdentifiersOrder count] == 0) {
+        mArrFormContentIdentifiersOrder = [[NSMutableArray alloc] initWithObjects:forKey, nil];
+        mDicFormContentTableData = [[NSMutableDictionary alloc] initWithObjects:[NSArray arrayWithObject:object] forKeys:[NSArray arrayWithObject:forKey]];
+        result = YES;
+    }
+    
+    return result;
+}
+
+/*
+ * This method is used to add specific data object in between the DataSource, after a given data object (which specified by the key).
+ * Basically this is the method we use to populate the whole dataSource after we initiate it useing "initiateFormContentWithObject" method.
+ */
+- (BOOL) insertAfterKey:(NSString *) key object:(FormPortionTableViewCellData *) object forKey:(NSString *) forKey {
+    BOOL result = NO;
+    if ([mArrFormContentIdentifiersOrder count] > 0) {
+        int index = 0;
+        for (NSString *inKey in mArrFormContentIdentifiersOrder) {
+            index++;
+            if ([inKey isEqualToString:key]) {
+                [mArrFormContentIdentifiersOrder insertObject:forKey atIndex:index];
+                [mDicFormContentTableData setObject:object forKey:forKey];
+                result = YES;
+                break;
+            }
+        }
+    }
+    return result;
+}
+
+/*
+ * Remove data object which is in datasource of the Form TableView, for the given Key (which is ContentIdentifier of that cell).
+ */
+- (BOOL) removeObjectForKey:(NSString *) forKey {
+    BOOL result = NO;
+    int index = 0;
+    for (NSString *inKey in mArrFormContentIdentifiersOrder) {
+        if ([inKey isEqualToString:forKey]) {
+            [mArrFormContentIdentifiersOrder removeObjectAtIndex:index];
+            [mDicFormContentTableData removeObjectForKey:inKey];
+            result = YES;
+            break;
+        }
+        index++;
+    }
+    return result;
+}
+
+/*
+ * Clear out the dataSource already filled in data.
+ * if "forKey" parameter sent nil, then it will clear out the whole UI.
+ */
+- (BOOL) resetDataSourceForKey:(NSString *) forKey {
+    BOOL result = NO;
+    int index = 0;
+    for (NSString *inKey in mArrFormContentIdentifiersOrder) {
+        if (forKey != nil) {
+            if ([inKey isEqualToString:forKey]) {
+                //  shouldResetControl flag might be reset to False by the CellForRowAtIndexPath method IF-Else blocks after clearing out the data in the UI.
+                [((FormPortionTableViewCellData *)[mDicFormContentTableData objectForKey:inKey]) setResetControlUI:YES];
+                NSIndexPath *indexPath = [self getIndexPathForKey:inKey];
+                [formContainer scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+                [formContainer reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                result = YES;
+                break;
+            }
+        } else {
+            //  shouldResetControl flag might be reset to False by the CellForRowAtIndexPath method IF-Else blocks after clearing out the data in the UI.
+            [((FormPortionTableViewCellData *)[mDicFormContentTableData objectForKey:inKey]) setResetControlUI:YES];
+            result = YES;
+        }
+        index++;
+    }
+    
+    if (forKey == nil) {
+        [formContainer reloadData];
+    }
+    
+    return result;
+}
+
+/*
+ * Get the indexPath of the Form TableView Cell when its correspondent key is given
+ */
+- (NSIndexPath *) getIndexPathForKey: (NSString *) key {
+    NSInteger row = [mArrFormContentIdentifiersOrder indexOfObject:key];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+    return indexPath;
+}
+
+- (FormPortionTableViewCellData *) getFormPortionCellDataForKey:(NSString *) forKey {
+    return [mDicFormContentTableData objectForKey:forKey];
+}
+
+- (FormPortionTableViewCellData *) getCellDataForGivenTag:(int) tag {
+    FormPortionTableViewCellData *result;
+    if ([mArrFormContentIdentifiersOrder count] > 0) {
+        for (int i = 0; i < [mArrFormContentIdentifiersOrder count]; i++) {
+            NSString *nextKey = mArrFormContentIdentifiersOrder[i];
+            if ([((FormPortionTableViewCellData *)[mDicFormContentTableData objectForKey:nextKey]) tag] == tag) {
+                result = [mDicFormContentTableData objectForKey:nextKey];
+                break;
+            }
+        }
+    }
+    return result;
+}
+
+- (FormPortionTableViewCellData *) getNextTextFieldCellForGivenCurrentTextFieldCellKey:(NSString *) currentKey {
+    FormPortionTableViewCellData *result;
+    if ([mArrFormContentIdentifiersOrder count] > 0) {
+        NSUInteger index = [mArrFormContentIdentifiersOrder indexOfObject:currentKey];
+        // Array initiated from the index of the current TextFieldCell Key/ContentIdentifier
+        for (int i = (int)index; i < [mArrFormContentIdentifiersOrder count]; i++) {
+            NSString *nextKey = mArrFormContentIdentifiersOrder[i];
+            // whichever cell that comes next just after the current Key, check its type if it's a TextField and then
+            // return it.
+            if (![nextKey isEqualToString:currentKey]) {
+                FormPortionTableViewCellData *cellData = [mDicFormContentTableData objectForKey:nextKey];
+                if (cellData.type == TYPE_TEXTFIELD) {
+                    result = cellData;
+                    break;
+                }
+            }
+        }
+    }
+    return result;
+}
+
 - (UITableViewCell *) getFormCellForKey:(NSString *)forKey forKindOfClass:(Class)aClass {
     NSIndexPath *indexPath = [self getIndexPathForKey:forKey];
     if ([[formContainer cellForRowAtIndexPath:indexPath] isKindOfClass:aClass]) {
@@ -400,11 +467,12 @@
     }
 }
 
+#pragma mark Form Data Temporary Percistance methods
 /*
  * Methods to maintain user entered data while UITableView reload
- * Note: Some properties have been defined within "FormPortionTableViewCellData" class to hold the UIControl of the Cell related data.
- * And also those are implemented to be compliant with the NSCoding protocol, so whenever we want we can write
- * "FormPortionTableViewCellData" objects to a file or transmitted to another process, perhaps over a network
+ * Note: Some properties have been defined within "FormPortionTableViewCellData" class to hold the UIControl of the Cell
+ * related data. And also those are implemented to be compliant with the NSCoding protocol, so whenever we want we can
+ * write "FormPortionTableViewCellData" objects to a file or transmitted to another process, perhaps over a network
  * For now I have added only 4 types of essential data holders, NSString, int, float, BOOL
  * Related StackOverflow answer: http://stackoverflow.com/questions/2315948/how-to-store-custom-objects-in-nsuserdefaults
  */
