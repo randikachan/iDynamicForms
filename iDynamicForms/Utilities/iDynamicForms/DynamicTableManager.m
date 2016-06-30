@@ -89,7 +89,7 @@
                 [cellEmpty setTag:data.tag];
             }
             
-            (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
+            (self.isSetTableViewCellsClearColor) ? [cellEmpty setBackgroundColor:[UIColor clearColor]] : nil;
             
             [cellEmpty setTag:indexPath.row];
             return cellEmpty;
@@ -158,7 +158,7 @@
                 [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
             }
             
-            (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
+            (self.isSetTableViewCellsClearColor) ? [cellHeadTitle setBackgroundColor:[UIColor clearColor]] : nil;
             [cellHeadTitle setTag:indexPath.row];
             [cellHeadTitle setNeedsDisplay];
             return cellHeadTitle;
@@ -179,7 +179,7 @@
                 [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
             }
             
-            (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
+            (self.isSetTableViewCellsClearColor) ? [cellHint setBackgroundColor:[UIColor clearColor]] : nil;
             [cellHint setTag:indexPath.row];
             [cellHint setNeedsDisplay];
             
@@ -205,7 +205,7 @@
                 [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
             }
             
-            (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
+            (self.isSetTableViewCellsClearColor) ? [cellLink setBackgroundColor:[UIColor clearColor]] : nil;
             [cellLink setTag:indexPath.row];
             [cellLink setNeedsDisplay];
             return cellLink;
@@ -238,7 +238,7 @@
             [cellSwitch.lblSwitchTitle setText:data.title];
             [cellSwitch.lblSwitchTitle setTextColor:[UIColor blackColor]];
             
-            (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
+            (self.isSetTableViewCellsClearColor) ? [cellSwitch setBackgroundColor:[UIColor clearColor]] : nil;
             [cellSwitch setTag:indexPath.row];
             [cellSwitch setNeedsDisplay];
             return cellSwitch;
@@ -260,7 +260,7 @@
             
             [cellTextView.lblTitle setText:data.title];
             
-            (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
+            (self.isSetTableViewCellsClearColor) ? [cellTextView setBackgroundColor:[UIColor clearColor]] : nil;
             [cellTextView setTag:indexPath.row];
             [cellTextView setNeedsDisplay];
             return cellTextView;
@@ -289,7 +289,7 @@
                 [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.
             }
             
-            (self.isSetTableViewCellsClearColor) ? [cellBtn setBackgroundColor:[UIColor clearColor]] : nil;
+            (self.isSetTableViewCellsClearColor) ? [cellTextField setBackgroundColor:[UIColor clearColor]] : nil;
             [cellTextField setTag:indexPath.row];
             [cellTextField setNeedsDisplay];
             return cellTextField;
