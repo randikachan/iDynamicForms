@@ -56,7 +56,7 @@
 		304F299B1CE1FB2C007F776E /* ViewControllerFormConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerFormConfig.m; sourceTree = "<group>"; };
 		304F299C1CE1FB2C007F776E /* ViewControllerFormDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerFormDataSource.h; sourceTree = "<group>"; };
 		304F299D1CE1FB2C007F776E /* ViewControllerFormDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerFormDataSource.m; sourceTree = "<group>"; };
-		304F29A51CE1FBDD007F776E /* DynamicTableManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DynamicTableManager.h; path = DynamicTableManager/DynamicTableManager.h; sourceTree = "<group>"; };
+		304F29A51CE1FBDD007F776E /* DynamicTableManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicTableManager.h; sourceTree = "<group>"; };
 		304F29A61CE1FBDD007F776E /* DynamicTableManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DynamicTableManager.m; path = DynamicTableManager/DynamicTableManager.m; sourceTree = "<group>"; };
 		304F29A71CE1FBDD007F776E /* TableViewFormDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewFormDataSource.h; sourceTree = "<group>"; };
 		304F29C01CE1FE1A007F776E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -92,7 +92,7 @@
 		3093EA151D251B8400F661CD /* TextFieldTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldTableViewCell.xib; sourceTree = "<group>"; };
 		3093EA191D251C3A00F661CD /* FormPortionTableViewCellData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormPortionTableViewCellData.h; sourceTree = "<group>"; };
 		3093EA1A1D251C3A00F661CD /* FormPortionTableViewCellData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormPortionTableViewCellData.m; sourceTree = "<group>"; };
-		3093EA1D1D251D5400F661CD /* IDynamicFormsConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDynamicFormsConfig.h; sourceTree = "<group>"; };
+		3093EA1D1D251D5400F661CD /* IDynamicFormsConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDynamicFormsConfig.h; path = ../IDynamicFormsConfig.h; sourceTree = "<group>"; };
 		30FDBCBF1CF223FC005B2D21 /* app_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_icon@2x.png"; sourceTree = "<group>"; };
 		30FDBCC01CF223FC005B2D21 /* app_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_icon@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -229,8 +229,6 @@
 		304F29A11CE1FB3B007F776E /* iDynamicForms */ = {
 			isa = PBXGroup;
 			children = (
-				3093EA1D1D251D5400F661CD /* IDynamicFormsConfig.h */,
-				304F29A51CE1FBDD007F776E /* DynamicTableManager.h */,
 				304F29A61CE1FBDD007F776E /* DynamicTableManager.m */,
 				3093EA181D251C1B00F661CD /* Models */,
 				3093E9DC1D25139000F661CD /* Views */,
@@ -370,6 +368,8 @@
 		3093EA1C1D251CB900F661CD /* DynamicTableManager */ = {
 			isa = PBXGroup;
 			children = (
+				3093EA1D1D251D5400F661CD /* IDynamicFormsConfig.h */,
+				304F29A51CE1FBDD007F776E /* DynamicTableManager.h */,
 			);
 			path = DynamicTableManager;
 			sourceTree = "<group>";
