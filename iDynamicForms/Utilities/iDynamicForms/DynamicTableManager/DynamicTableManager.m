@@ -17,7 +17,7 @@
 #import "ButtonTableViewCell.h"
 #import "EmptyTableViewCell.h"
 #import "SegmentedControlTableViewCell.h"
-#import "Config.h"
+#import "IDynamicFormsConfig.h"
 
 @implementation DynamicTableManager {
     NSString *currentCellID;

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		303B79621CE497DE00CB848F /* HeadTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 303B79611CE497DE00CB848F /* HeadTitleTableViewCell.xib */; };
 		3049D2F81CEC2F3B00F0944E /* launcher@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3049D2F71CEC2F3B00F0944E /* launcher@2x.png */; };
 		304F294B1CE1E6A6007F776E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 304F294A1CE1E6A6007F776E /* main.m */; };
 		304F29921CE1FA06007F776E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 304F29901CE1FA06007F776E /* LaunchScreen.storyboard */; };
@@ -17,33 +16,33 @@
 		304F299F1CE1FB2C007F776E /* ViewControllerFormConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 304F299B1CE1FB2C007F776E /* ViewControllerFormConfig.m */; };
 		304F29A01CE1FB2C007F776E /* ViewControllerFormDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 304F299D1CE1FB2C007F776E /* ViewControllerFormDataSource.m */; };
 		304F29AA1CE1FBDD007F776E /* DynamicTableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 304F29A61CE1FBDD007F776E /* DynamicTableManager.m */; };
-		304F29BD1CE1FDA8007F776E /* LinkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 304F29B41CE1FDA8007F776E /* LinkTableViewCell.m */; };
-		304F29BE1CE1FDA8007F776E /* SwitchesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 304F29B61CE1FDA8007F776E /* SwitchesTableViewCell.m */; };
-		304F29BF1CE1FDA8007F776E /* TextViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 304F29B81CE1FDA8007F776E /* TextViewTableViewCell.m */; };
 		304F29C31CE1FE1A007F776E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 304F29C11CE1FE1A007F776E /* AppDelegate.m */; };
-		304F29C81CE1FE8D007F776E /* HeadTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 304F29C61CE1FE8D007F776E /* HeadTitleTableViewCell.m */; };
-		304F29D11CE20444007F776E /* ButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 304F29CF1CE20444007F776E /* ButtonTableViewCell.xib */; };
-		304F29D41CE204DC007F776E /* EmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 304F29D31CE204DC007F776E /* EmptyTableViewCell.xib */; };
-		304F29D71CE205FE007F776E /* EmptyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 304F29D61CE205FE007F776E /* EmptyTableViewCell.m */; };
 		307E44E01CE9E53600536EB0 /* dummy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 307E44DF1CE9E53600536EB0 /* dummy@2x.png */; };
 		307E44E21CE9E63A00536EB0 /* dummy_tblcl_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 307E44E11CE9E63A00536EB0 /* dummy_tblcl_bg@2x.png */; };
-		30B6C6A91CFFFC1B000D09E0 /* SegmentedControlTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B6C6A71CFFFC1B000D09E0 /* SegmentedControlTableViewCell.m */; };
-		30B6C6AA1CFFFC1B000D09E0 /* SegmentedControlTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30B6C6A81CFFFC1B000D09E0 /* SegmentedControlTableViewCell.xib */; };
-		30BFFE5D1CE3A54C00829880 /* HintTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30BFFE5B1CE3A54C00829880 /* HintTableViewCell.m */; };
-		30BFFE5E1CE3A54C00829880 /* HintTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30BFFE5C1CE3A54C00829880 /* HintTableViewCell.xib */; };
-		30BFFE601CE3A59700829880 /* LinkTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30BFFE5F1CE3A59700829880 /* LinkTableViewCell.xib */; };
-		30BFFE631CE3A61600829880 /* SwitchesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30BFFE621CE3A61600829880 /* SwitchesTableViewCell.xib */; };
-		30BFFE671CE3A68900829880 /* TextViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30BFFE661CE3A68900829880 /* TextViewTableViewCell.xib */; };
-		30BFFE691CE3AA0F00829880 /* ButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 304F29CE1CE20444007F776E /* ButtonTableViewCell.m */; };
-		30BFFE701CE3AD7600829880 /* FormPortionTableViewCellData.m in Sources */ = {isa = PBXBuildFile; fileRef = 30BFFE6F1CE3AD7600829880 /* FormPortionTableViewCellData.m */; };
-		30BFFE781CE3B03000829880 /* TextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30BFFE771CE3B03000829880 /* TextFieldTableViewCell.m */; };
-		30BFFE7B1CE3B07500829880 /* TextFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30BFFE7A1CE3B07500829880 /* TextFieldTableViewCell.xib */; };
+		3093E9E11D25160B00F661CD /* ButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3093E9DF1D25160B00F661CD /* ButtonTableViewCell.m */; };
+		3093E9E21D25160B00F661CD /* ButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3093E9E01D25160B00F661CD /* ButtonTableViewCell.xib */; };
+		3093E9E71D25162C00F661CD /* EmptyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3093E9E51D25162C00F661CD /* EmptyTableViewCell.m */; };
+		3093E9E81D25162C00F661CD /* EmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3093E9E61D25162C00F661CD /* EmptyTableViewCell.xib */; };
+		3093E9ED1D25184A00F661CD /* HeadTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3093E9EB1D25184A00F661CD /* HeadTitleTableViewCell.m */; };
+		3093E9EE1D25184A00F661CD /* HeadTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3093E9EC1D25184A00F661CD /* HeadTitleTableViewCell.xib */; };
+		3093E9F31D2518B600F661CD /* HintTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3093E9F11D2518B600F661CD /* HintTableViewCell.m */; };
+		3093E9F41D2518B600F661CD /* HintTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3093E9F21D2518B600F661CD /* HintTableViewCell.xib */; };
+		3093E9F91D2518DC00F661CD /* LinkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3093E9F71D2518DC00F661CD /* LinkTableViewCell.m */; };
+		3093E9FA1D2518DC00F661CD /* LinkTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3093E9F81D2518DC00F661CD /* LinkTableViewCell.xib */; };
+		3093E9FF1D25190500F661CD /* SegmentedControlTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3093E9FD1D25190500F661CD /* SegmentedControlTableViewCell.m */; };
+		3093EA001D25190500F661CD /* SegmentedControlTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3093E9FE1D25190500F661CD /* SegmentedControlTableViewCell.xib */; };
+		3093EA051D251A1F00F661CD /* SwitchesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3093EA031D251A1F00F661CD /* SwitchesTableViewCell.m */; };
+		3093EA061D251A1F00F661CD /* SwitchesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3093EA041D251A1F00F661CD /* SwitchesTableViewCell.xib */; };
+		3093EA111D251A9000F661CD /* TextViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3093EA0F1D251A9000F661CD /* TextViewTableViewCell.m */; };
+		3093EA121D251A9000F661CD /* TextViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3093EA101D251A9000F661CD /* TextViewTableViewCell.xib */; };
+		3093EA161D251B8400F661CD /* TextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3093EA141D251B8400F661CD /* TextFieldTableViewCell.m */; };
+		3093EA171D251B8400F661CD /* TextFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3093EA151D251B8400F661CD /* TextFieldTableViewCell.xib */; };
+		3093EA1B1D251C3A00F661CD /* FormPortionTableViewCellData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3093EA1A1D251C3A00F661CD /* FormPortionTableViewCellData.m */; };
 		30FDBCC11CF223FC005B2D21 /* app_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30FDBCBF1CF223FC005B2D21 /* app_icon@2x.png */; };
 		30FDBCC21CF223FC005B2D21 /* app_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30FDBCC01CF223FC005B2D21 /* app_icon@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		303B79611CE497DE00CB848F /* HeadTitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeadTitleTableViewCell.xib; sourceTree = "<group>"; };
 		3049D2F71CEC2F3B00F0944E /* launcher@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launcher@2x.png"; sourceTree = "<group>"; };
 		304F29461CE1E6A6007F776E /* iDynamicForms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iDynamicForms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		304F294A1CE1E6A6007F776E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -57,42 +56,43 @@
 		304F299B1CE1FB2C007F776E /* ViewControllerFormConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerFormConfig.m; sourceTree = "<group>"; };
 		304F299C1CE1FB2C007F776E /* ViewControllerFormDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerFormDataSource.h; sourceTree = "<group>"; };
 		304F299D1CE1FB2C007F776E /* ViewControllerFormDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerFormDataSource.m; sourceTree = "<group>"; };
-		304F29A51CE1FBDD007F776E /* DynamicTableManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicTableManager.h; sourceTree = "<group>"; };
-		304F29A61CE1FBDD007F776E /* DynamicTableManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicTableManager.m; sourceTree = "<group>"; };
+		304F29A51CE1FBDD007F776E /* DynamicTableManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DynamicTableManager.h; path = DynamicTableManager/DynamicTableManager.h; sourceTree = "<group>"; };
+		304F29A61CE1FBDD007F776E /* DynamicTableManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DynamicTableManager.m; path = DynamicTableManager/DynamicTableManager.m; sourceTree = "<group>"; };
 		304F29A71CE1FBDD007F776E /* TableViewFormDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewFormDataSource.h; sourceTree = "<group>"; };
-		304F29B31CE1FDA8007F776E /* LinkTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkTableViewCell.h; sourceTree = "<group>"; };
-		304F29B41CE1FDA8007F776E /* LinkTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkTableViewCell.m; sourceTree = "<group>"; };
-		304F29B51CE1FDA8007F776E /* SwitchesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchesTableViewCell.h; sourceTree = "<group>"; };
-		304F29B61CE1FDA8007F776E /* SwitchesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchesTableViewCell.m; sourceTree = "<group>"; };
-		304F29B71CE1FDA8007F776E /* TextViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewTableViewCell.h; sourceTree = "<group>"; };
-		304F29B81CE1FDA8007F776E /* TextViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewTableViewCell.m; sourceTree = "<group>"; };
 		304F29C01CE1FE1A007F776E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		304F29C11CE1FE1A007F776E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		304F29C21CE1FE1A007F776E /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
-		304F29C51CE1FE8D007F776E /* HeadTitleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadTitleTableViewCell.h; sourceTree = "<group>"; };
-		304F29C61CE1FE8D007F776E /* HeadTitleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadTitleTableViewCell.m; sourceTree = "<group>"; };
-		304F29CD1CE20444007F776E /* ButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonTableViewCell.h; sourceTree = "<group>"; };
-		304F29CE1CE20444007F776E /* ButtonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonTableViewCell.m; sourceTree = "<group>"; };
-		304F29CF1CE20444007F776E /* ButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonTableViewCell.xib; sourceTree = "<group>"; };
-		304F29D31CE204DC007F776E /* EmptyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyTableViewCell.xib; sourceTree = "<group>"; };
-		304F29D51CE205FE007F776E /* EmptyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyTableViewCell.h; sourceTree = "<group>"; };
-		304F29D61CE205FE007F776E /* EmptyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyTableViewCell.m; sourceTree = "<group>"; };
 		307E44DF1CE9E53600536EB0 /* dummy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dummy@2x.png"; sourceTree = "<group>"; };
 		307E44E11CE9E63A00536EB0 /* dummy_tblcl_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dummy_tblcl_bg@2x.png"; sourceTree = "<group>"; };
-		30B6C6A61CFFFC1B000D09E0 /* SegmentedControlTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentedControlTableViewCell.h; sourceTree = "<group>"; };
-		30B6C6A71CFFFC1B000D09E0 /* SegmentedControlTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentedControlTableViewCell.m; sourceTree = "<group>"; };
-		30B6C6A81CFFFC1B000D09E0 /* SegmentedControlTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SegmentedControlTableViewCell.xib; sourceTree = "<group>"; };
-		30BFFE5A1CE3A54C00829880 /* HintTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HintTableViewCell.h; sourceTree = "<group>"; };
-		30BFFE5B1CE3A54C00829880 /* HintTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HintTableViewCell.m; sourceTree = "<group>"; };
-		30BFFE5C1CE3A54C00829880 /* HintTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HintTableViewCell.xib; sourceTree = "<group>"; };
-		30BFFE5F1CE3A59700829880 /* LinkTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LinkTableViewCell.xib; sourceTree = "<group>"; };
-		30BFFE621CE3A61600829880 /* SwitchesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchesTableViewCell.xib; sourceTree = "<group>"; };
-		30BFFE661CE3A68900829880 /* TextViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextViewTableViewCell.xib; sourceTree = "<group>"; };
-		30BFFE6E1CE3AD7600829880 /* FormPortionTableViewCellData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormPortionTableViewCellData.h; sourceTree = "<group>"; };
-		30BFFE6F1CE3AD7600829880 /* FormPortionTableViewCellData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormPortionTableViewCellData.m; sourceTree = "<group>"; };
-		30BFFE771CE3B03000829880 /* TextFieldTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldTableViewCell.m; sourceTree = "<group>"; };
-		30BFFE791CE3B05900829880 /* TextFieldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldTableViewCell.h; sourceTree = "<group>"; };
-		30BFFE7A1CE3B07500829880 /* TextFieldTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldTableViewCell.xib; sourceTree = "<group>"; };
+		3093E9DE1D25160B00F661CD /* ButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonTableViewCell.h; sourceTree = "<group>"; };
+		3093E9DF1D25160B00F661CD /* ButtonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonTableViewCell.m; sourceTree = "<group>"; };
+		3093E9E01D25160B00F661CD /* ButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonTableViewCell.xib; sourceTree = "<group>"; };
+		3093E9E41D25162C00F661CD /* EmptyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyTableViewCell.h; sourceTree = "<group>"; };
+		3093E9E51D25162C00F661CD /* EmptyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyTableViewCell.m; sourceTree = "<group>"; };
+		3093E9E61D25162C00F661CD /* EmptyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyTableViewCell.xib; sourceTree = "<group>"; };
+		3093E9EA1D25184A00F661CD /* HeadTitleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadTitleTableViewCell.h; sourceTree = "<group>"; };
+		3093E9EB1D25184A00F661CD /* HeadTitleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadTitleTableViewCell.m; sourceTree = "<group>"; };
+		3093E9EC1D25184A00F661CD /* HeadTitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeadTitleTableViewCell.xib; sourceTree = "<group>"; };
+		3093E9F01D2518B600F661CD /* HintTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HintTableViewCell.h; sourceTree = "<group>"; };
+		3093E9F11D2518B600F661CD /* HintTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HintTableViewCell.m; sourceTree = "<group>"; };
+		3093E9F21D2518B600F661CD /* HintTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HintTableViewCell.xib; sourceTree = "<group>"; };
+		3093E9F61D2518DC00F661CD /* LinkTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkTableViewCell.h; sourceTree = "<group>"; };
+		3093E9F71D2518DC00F661CD /* LinkTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkTableViewCell.m; sourceTree = "<group>"; };
+		3093E9F81D2518DC00F661CD /* LinkTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LinkTableViewCell.xib; sourceTree = "<group>"; };
+		3093E9FC1D25190500F661CD /* SegmentedControlTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentedControlTableViewCell.h; sourceTree = "<group>"; };
+		3093E9FD1D25190500F661CD /* SegmentedControlTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentedControlTableViewCell.m; sourceTree = "<group>"; };
+		3093E9FE1D25190500F661CD /* SegmentedControlTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SegmentedControlTableViewCell.xib; sourceTree = "<group>"; };
+		3093EA021D251A1F00F661CD /* SwitchesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchesTableViewCell.h; sourceTree = "<group>"; };
+		3093EA031D251A1F00F661CD /* SwitchesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchesTableViewCell.m; sourceTree = "<group>"; };
+		3093EA041D251A1F00F661CD /* SwitchesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchesTableViewCell.xib; sourceTree = "<group>"; };
+		3093EA0E1D251A9000F661CD /* TextViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewTableViewCell.h; sourceTree = "<group>"; };
+		3093EA0F1D251A9000F661CD /* TextViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewTableViewCell.m; sourceTree = "<group>"; };
+		3093EA101D251A9000F661CD /* TextViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextViewTableViewCell.xib; sourceTree = "<group>"; };
+		3093EA131D251B8400F661CD /* TextFieldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldTableViewCell.h; sourceTree = "<group>"; };
+		3093EA141D251B8400F661CD /* TextFieldTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldTableViewCell.m; sourceTree = "<group>"; };
+		3093EA151D251B8400F661CD /* TextFieldTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldTableViewCell.xib; sourceTree = "<group>"; };
+		3093EA191D251C3A00F661CD /* FormPortionTableViewCellData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormPortionTableViewCellData.h; sourceTree = "<group>"; };
+		3093EA1A1D251C3A00F661CD /* FormPortionTableViewCellData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormPortionTableViewCellData.m; sourceTree = "<group>"; };
+		3093EA1D1D251D5400F661CD /* IDynamicFormsConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDynamicFormsConfig.h; sourceTree = "<group>"; };
 		30FDBCBF1CF223FC005B2D21 /* app_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_icon@2x.png"; sourceTree = "<group>"; };
 		30FDBCC01CF223FC005B2D21 /* app_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_icon@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -151,7 +151,6 @@
 			children = (
 				304F29C01CE1FE1A007F776E /* AppDelegate.h */,
 				304F29C11CE1FE1A007F776E /* AppDelegate.m */,
-				304F29C21CE1FE1A007F776E /* Config.h */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -177,15 +176,6 @@
 		304F29741CE1ED23007F776E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				304F29D21CE2049F007F776E /* EmptyTableViewCell */,
-				304F29CC1CE2040A007F776E /* ButtonTableViewCell */,
-				304F29C41CE1FE6D007F776E /* HeadTitleTableViewCell */,
-				30BFFE591CE3A51100829880 /* HintTableViewCell */,
-				30BFFE611CE3A5B600829880 /* LinkTableViewCell */,
-				30BFFE651CE3A63300829880 /* SwitchesTableViewCell */,
-				30BFFE681CE3A6B800829880 /* TextViewTableViewCell */,
-				30BFFE761CE3AF7000829880 /* TextFieldTableViewCell */,
-				30B6C6AB1CFFFC22000D09E0 /* SegmentedControlTableViewCell */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -202,8 +192,6 @@
 		304F29761CE1ED39007F776E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				30BFFE6E1CE3AD7600829880 /* FormPortionTableViewCellData.h */,
-				30BFFE6F1CE3AD7600829880 /* FormPortionTableViewCellData.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -241,42 +229,15 @@
 		304F29A11CE1FB3B007F776E /* iDynamicForms */ = {
 			isa = PBXGroup;
 			children = (
+				3093EA1D1D251D5400F661CD /* IDynamicFormsConfig.h */,
 				304F29A51CE1FBDD007F776E /* DynamicTableManager.h */,
 				304F29A61CE1FBDD007F776E /* DynamicTableManager.m */,
-				304F29A71CE1FBDD007F776E /* TableViewFormDataSource.h */,
+				3093EA181D251C1B00F661CD /* Models */,
+				3093E9DC1D25139000F661CD /* Views */,
+				3093EA1C1D251CB900F661CD /* DynamicTableManager */,
+				3093EA201D251E3C00F661CD /* Protocols */,
 			);
 			path = iDynamicForms;
-			sourceTree = "<group>";
-		};
-		304F29C41CE1FE6D007F776E /* HeadTitleTableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				304F29C51CE1FE8D007F776E /* HeadTitleTableViewCell.h */,
-				304F29C61CE1FE8D007F776E /* HeadTitleTableViewCell.m */,
-				303B79611CE497DE00CB848F /* HeadTitleTableViewCell.xib */,
-			);
-			name = HeadTitleTableViewCell;
-			path = HeadTItleTableViewCell;
-			sourceTree = "<group>";
-		};
-		304F29CC1CE2040A007F776E /* ButtonTableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				304F29CD1CE20444007F776E /* ButtonTableViewCell.h */,
-				304F29CE1CE20444007F776E /* ButtonTableViewCell.m */,
-				304F29CF1CE20444007F776E /* ButtonTableViewCell.xib */,
-			);
-			path = ButtonTableViewCell;
-			sourceTree = "<group>";
-		};
-		304F29D21CE2049F007F776E /* EmptyTableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				304F29D51CE205FE007F776E /* EmptyTableViewCell.h */,
-				304F29D61CE205FE007F776E /* EmptyTableViewCell.m */,
-				304F29D31CE204DC007F776E /* EmptyTableViewCell.xib */,
-			);
-			path = EmptyTableViewCell;
 			sourceTree = "<group>";
 		};
 		307E44DE1CE9E50000536EB0 /* DummyImages */ = {
@@ -291,65 +252,134 @@
 			path = DummyImages;
 			sourceTree = "<group>";
 		};
-		30B6C6AB1CFFFC22000D09E0 /* SegmentedControlTableViewCell */ = {
+		3093E9DC1D25139000F661CD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				30B6C6A61CFFFC1B000D09E0 /* SegmentedControlTableViewCell.h */,
-				30B6C6A71CFFFC1B000D09E0 /* SegmentedControlTableViewCell.m */,
-				30B6C6A81CFFFC1B000D09E0 /* SegmentedControlTableViewCell.xib */,
+				3093E9DD1D2515EE00F661CD /* ButtonTableViewCell */,
+				3093E9E31D25161900F661CD /* EmptyTableViewCell */,
+				3093E9E91D25163D00F661CD /* HeadTItleTableViewCell */,
+				3093E9EF1D25189A00F661CD /* HintTableViewCell */,
+				3093E9F51D2518C400F661CD /* LinkTableViewCell */,
+				3093E9FB1D2518EE00F661CD /* SegmentedControlTableViewCell */,
+				3093EA011D251A0E00F661CD /* SwitchesTableViewCell */,
+				3093EA071D251A3000F661CD /* TextFieldTableViewCell */,
+				3093EA0D1D251A4F00F661CD /* TextViewTableViewCell */,
 			);
-			path = SegmentedControlTableViewCell;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		30BFFE591CE3A51100829880 /* HintTableViewCell */ = {
+		3093E9DD1D2515EE00F661CD /* ButtonTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				30BFFE5A1CE3A54C00829880 /* HintTableViewCell.h */,
-				30BFFE5B1CE3A54C00829880 /* HintTableViewCell.m */,
-				30BFFE5C1CE3A54C00829880 /* HintTableViewCell.xib */,
+				3093E9DE1D25160B00F661CD /* ButtonTableViewCell.h */,
+				3093E9DF1D25160B00F661CD /* ButtonTableViewCell.m */,
+				3093E9E01D25160B00F661CD /* ButtonTableViewCell.xib */,
+			);
+			path = ButtonTableViewCell;
+			sourceTree = "<group>";
+		};
+		3093E9E31D25161900F661CD /* EmptyTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				3093E9E41D25162C00F661CD /* EmptyTableViewCell.h */,
+				3093E9E51D25162C00F661CD /* EmptyTableViewCell.m */,
+				3093E9E61D25162C00F661CD /* EmptyTableViewCell.xib */,
+			);
+			path = EmptyTableViewCell;
+			sourceTree = "<group>";
+		};
+		3093E9E91D25163D00F661CD /* HeadTItleTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				3093E9EA1D25184A00F661CD /* HeadTitleTableViewCell.h */,
+				3093E9EB1D25184A00F661CD /* HeadTitleTableViewCell.m */,
+				3093E9EC1D25184A00F661CD /* HeadTitleTableViewCell.xib */,
+			);
+			path = HeadTItleTableViewCell;
+			sourceTree = "<group>";
+		};
+		3093E9EF1D25189A00F661CD /* HintTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				3093E9F01D2518B600F661CD /* HintTableViewCell.h */,
+				3093E9F11D2518B600F661CD /* HintTableViewCell.m */,
+				3093E9F21D2518B600F661CD /* HintTableViewCell.xib */,
 			);
 			path = HintTableViewCell;
 			sourceTree = "<group>";
 		};
-		30BFFE611CE3A5B600829880 /* LinkTableViewCell */ = {
+		3093E9F51D2518C400F661CD /* LinkTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				304F29B31CE1FDA8007F776E /* LinkTableViewCell.h */,
-				304F29B41CE1FDA8007F776E /* LinkTableViewCell.m */,
-				30BFFE5F1CE3A59700829880 /* LinkTableViewCell.xib */,
+				3093E9F61D2518DC00F661CD /* LinkTableViewCell.h */,
+				3093E9F71D2518DC00F661CD /* LinkTableViewCell.m */,
+				3093E9F81D2518DC00F661CD /* LinkTableViewCell.xib */,
 			);
 			path = LinkTableViewCell;
 			sourceTree = "<group>";
 		};
-		30BFFE651CE3A63300829880 /* SwitchesTableViewCell */ = {
+		3093E9FB1D2518EE00F661CD /* SegmentedControlTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				304F29B51CE1FDA8007F776E /* SwitchesTableViewCell.h */,
-				304F29B61CE1FDA8007F776E /* SwitchesTableViewCell.m */,
-				30BFFE621CE3A61600829880 /* SwitchesTableViewCell.xib */,
+				3093E9FC1D25190500F661CD /* SegmentedControlTableViewCell.h */,
+				3093E9FD1D25190500F661CD /* SegmentedControlTableViewCell.m */,
+				3093E9FE1D25190500F661CD /* SegmentedControlTableViewCell.xib */,
+			);
+			path = SegmentedControlTableViewCell;
+			sourceTree = "<group>";
+		};
+		3093EA011D251A0E00F661CD /* SwitchesTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				3093EA021D251A1F00F661CD /* SwitchesTableViewCell.h */,
+				3093EA031D251A1F00F661CD /* SwitchesTableViewCell.m */,
+				3093EA041D251A1F00F661CD /* SwitchesTableViewCell.xib */,
 			);
 			path = SwitchesTableViewCell;
 			sourceTree = "<group>";
 		};
-		30BFFE681CE3A6B800829880 /* TextViewTableViewCell */ = {
+		3093EA071D251A3000F661CD /* TextFieldTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				304F29B71CE1FDA8007F776E /* TextViewTableViewCell.h */,
-				304F29B81CE1FDA8007F776E /* TextViewTableViewCell.m */,
-				30BFFE661CE3A68900829880 /* TextViewTableViewCell.xib */,
+				3093EA131D251B8400F661CD /* TextFieldTableViewCell.h */,
+				3093EA141D251B8400F661CD /* TextFieldTableViewCell.m */,
+				3093EA151D251B8400F661CD /* TextFieldTableViewCell.xib */,
+			);
+			path = TextFieldTableViewCell;
+			sourceTree = "<group>";
+		};
+		3093EA0D1D251A4F00F661CD /* TextViewTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				3093EA0E1D251A9000F661CD /* TextViewTableViewCell.h */,
+				3093EA0F1D251A9000F661CD /* TextViewTableViewCell.m */,
+				3093EA101D251A9000F661CD /* TextViewTableViewCell.xib */,
 			);
 			path = TextViewTableViewCell;
 			sourceTree = "<group>";
 		};
-		30BFFE761CE3AF7000829880 /* TextFieldTableViewCell */ = {
+		3093EA181D251C1B00F661CD /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				30BFFE791CE3B05900829880 /* TextFieldTableViewCell.h */,
-				30BFFE771CE3B03000829880 /* TextFieldTableViewCell.m */,
-				30BFFE7A1CE3B07500829880 /* TextFieldTableViewCell.xib */,
+				3093EA191D251C3A00F661CD /* FormPortionTableViewCellData.h */,
+				3093EA1A1D251C3A00F661CD /* FormPortionTableViewCellData.m */,
 			);
-			name = TextFieldTableViewCell;
-			path = TextViewTableViewCell;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3093EA1C1D251CB900F661CD /* DynamicTableManager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DynamicTableManager;
+			sourceTree = "<group>";
+		};
+		3093EA201D251E3C00F661CD /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				304F29A71CE1FBDD007F776E /* TableViewFormDataSource.h */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -409,21 +439,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30BFFE671CE3A68900829880 /* TextViewTableViewCell.xib in Resources */,
 				30FDBCC11CF223FC005B2D21 /* app_icon@2x.png in Resources */,
 				307E44E01CE9E53600536EB0 /* dummy@2x.png in Resources */,
+				3093EA001D25190500F661CD /* SegmentedControlTableViewCell.xib in Resources */,
 				3049D2F81CEC2F3B00F0944E /* launcher@2x.png in Resources */,
-				30BFFE631CE3A61600829880 /* SwitchesTableViewCell.xib in Resources */,
-				304F29D41CE204DC007F776E /* EmptyTableViewCell.xib in Resources */,
+				3093EA171D251B8400F661CD /* TextFieldTableViewCell.xib in Resources */,
+				3093E9EE1D25184A00F661CD /* HeadTitleTableViewCell.xib in Resources */,
 				30FDBCC21CF223FC005B2D21 /* app_icon@3x.png in Resources */,
 				307E44E21CE9E63A00536EB0 /* dummy_tblcl_bg@2x.png in Resources */,
-				30BFFE7B1CE3B07500829880 /* TextFieldTableViewCell.xib in Resources */,
-				303B79621CE497DE00CB848F /* HeadTitleTableViewCell.xib in Resources */,
-				30BFFE5E1CE3A54C00829880 /* HintTableViewCell.xib in Resources */,
 				304F29931CE1FA06007F776E /* Main.storyboard in Resources */,
-				304F29D11CE20444007F776E /* ButtonTableViewCell.xib in Resources */,
-				30BFFE601CE3A59700829880 /* LinkTableViewCell.xib in Resources */,
-				30B6C6AA1CFFFC1B000D09E0 /* SegmentedControlTableViewCell.xib in Resources */,
+				3093E9FA1D2518DC00F661CD /* LinkTableViewCell.xib in Resources */,
+				3093EA061D251A1F00F661CD /* SwitchesTableViewCell.xib in Resources */,
+				3093EA121D251A9000F661CD /* TextViewTableViewCell.xib in Resources */,
+				3093E9F41D2518B600F661CD /* HintTableViewCell.xib in Resources */,
+				3093E9E21D25160B00F661CD /* ButtonTableViewCell.xib in Resources */,
+				3093E9E81D25162C00F661CD /* EmptyTableViewCell.xib in Resources */,
 				304F29921CE1FA06007F776E /* LaunchScreen.storyboard in Resources */,
 				304F29961CE1FA56007F776E /* Assets.xcassets in Resources */,
 			);
@@ -437,21 +467,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				304F299E1CE1FB2C007F776E /* ViewController.m in Sources */,
-				304F29BD1CE1FDA8007F776E /* LinkTableViewCell.m in Sources */,
 				304F294B1CE1E6A6007F776E /* main.m in Sources */,
-				304F29D71CE205FE007F776E /* EmptyTableViewCell.m in Sources */,
-				30BFFE701CE3AD7600829880 /* FormPortionTableViewCellData.m in Sources */,
-				304F29BF1CE1FDA8007F776E /* TextViewTableViewCell.m in Sources */,
-				304F29C81CE1FE8D007F776E /* HeadTitleTableViewCell.m in Sources */,
+				3093E9F31D2518B600F661CD /* HintTableViewCell.m in Sources */,
+				3093E9ED1D25184A00F661CD /* HeadTitleTableViewCell.m in Sources */,
+				3093EA111D251A9000F661CD /* TextViewTableViewCell.m in Sources */,
+				3093EA051D251A1F00F661CD /* SwitchesTableViewCell.m in Sources */,
+				3093E9E11D25160B00F661CD /* ButtonTableViewCell.m in Sources */,
 				304F29C31CE1FE1A007F776E /* AppDelegate.m in Sources */,
-				30BFFE5D1CE3A54C00829880 /* HintTableViewCell.m in Sources */,
+				3093E9FF1D25190500F661CD /* SegmentedControlTableViewCell.m in Sources */,
+				3093E9F91D2518DC00F661CD /* LinkTableViewCell.m in Sources */,
 				304F29AA1CE1FBDD007F776E /* DynamicTableManager.m in Sources */,
-				30B6C6A91CFFFC1B000D09E0 /* SegmentedControlTableViewCell.m in Sources */,
 				304F29A01CE1FB2C007F776E /* ViewControllerFormDataSource.m in Sources */,
-				304F29BE1CE1FDA8007F776E /* SwitchesTableViewCell.m in Sources */,
-				30BFFE691CE3AA0F00829880 /* ButtonTableViewCell.m in Sources */,
+				3093E9E71D25162C00F661CD /* EmptyTableViewCell.m in Sources */,
 				304F299F1CE1FB2C007F776E /* ViewControllerFormConfig.m in Sources */,
-				30BFFE781CE3B03000829880 /* TextFieldTableViewCell.m in Sources */,
+				3093EA161D251B8400F661CD /* TextFieldTableViewCell.m in Sources */,
+				3093EA1B1D251C3A00F661CD /* FormPortionTableViewCellData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

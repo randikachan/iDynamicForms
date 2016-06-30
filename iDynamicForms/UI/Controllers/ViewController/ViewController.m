@@ -52,7 +52,7 @@
 #pragma mark TableView DataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"count: %ld", (unsigned long)[[tableManager mArrFormContentIdentifiersOrder] count]);
+    // NSLog(@"count: %ld", (unsigned long)[[tableManager mArrFormContentIdentifiersOrder] count]);
     return [[tableManager mArrFormContentIdentifiersOrder] count];
 }
 

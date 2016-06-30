@@ -7,7 +7,7 @@
 //
 
 #import "FormPortionTableViewCellData.h"
-#import "Config.h"
+#import "IDynamicFormsConfig.h"
 
 @implementation FormPortionTableViewCellData
 
