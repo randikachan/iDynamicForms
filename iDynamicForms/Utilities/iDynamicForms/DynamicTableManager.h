@@ -40,7 +40,17 @@
 
 - (FormPortionTableViewCellData *) getFormPortionCellDataForKey: (NSString *) forKey;
 
+- (FormPortionTableViewCellData *) getFormPortionCellDataAtIndex:(NSUInteger)itemIndex;
+
 - (UITableViewCell *) generateFormCellForRowAtIndexPath:(NSIndexPath *) indexPath forFormContainer:(UITableView *)tableView;
+
+- (void) setActionForUIControl:(UIControl *)control withData:(FormPortionTableViewCellData *)data forAction:(NSString *)action;
+
+- (void) setActionsForTableViewCell:(UITableViewCell *)cell withMainUIControlDelegate:(id)mainUIControlDelegate forPrimaryActionsArr:(NSArray *)arrActions;
+
+- (void) setActionForUIControl:(UIControl *)control withData:(FormPortionTableViewCellData *)data;
+
+- (void) setActionForUIControl:(UIControl *)control forControlEvents:(UIControlEvents)controlEvents withData:(FormPortionTableViewCellData *)data;
 
 - (UITableViewCell *) getFormCellForKey:(NSString *)forKey forKindOfClass:(Class)aClass;
 

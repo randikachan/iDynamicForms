@@ -302,6 +302,47 @@
     return nil;
 }
 
+- (void) setActionForUIControl:(UIControl *)control withData:(FormPortionTableViewCellData *)data forAction:(NSString *)action {
+    if (data.mainUIControlDelegate) {
+        SEL customSelector = NSSelectorFromString(action);
+        if ([data.mainUIControlDelegate respondsToSelector:customSelector]) {
+            [control addTarget:data.mainUIControlDelegate action:customSelector forControlEvents:UIControlEventTouchUpInside];
+        }
+    }
+}
+
+- (void) setActionsForTableViewCell:(UITableViewCell *)cell withMainUIControlDelegate:(id)mainUIControlDelegate forPrimaryActionsArr:(NSArray *)arrActions {
+    if (mainUIControlDelegate) {
+        for (NSUInteger i = 0; i < [arrActions count]; i++) {
+            SEL customSelector = NSSelectorFromString([arrActions objectAtIndex:i]);
+            if ([mainUIControlDelegate respondsToSelector:customSelector]) {
+                UIControl *control = [cell viewWithTag:i];
+                if (control) {
+                    [control addTarget:mainUIControlDelegate action:customSelector forControlEvents:UIControlEventTouchUpInside];
+                }
+            }
+        }
+    }
+}
+
+- (void) setActionForUIControl:(UIControl *)control withData:(FormPortionTableViewCellData *)data {
+    if (data.mainUIControlSelector && data.mainUIControlDelegate) {
+        SEL customSelector = NSSelectorFromString(data.mainUIControlSelector);
+        if ([data.mainUIControlDelegate respondsToSelector:customSelector]) {
+            [control addTarget:data.mainUIControlDelegate action:customSelector forControlEvents:UIControlEventTouchUpInside];
+        }
+    }
+}
+
+- (void) setActionForUIControl:(UIControl *)control forControlEvents:(UIControlEvents)controlEvents withData:(FormPortionTableViewCellData *)data {
+    if (data.mainUIControlSelector && data.mainUIControlDelegate) {
+        SEL customSelector = NSSelectorFromString(data.mainUIControlSelector);
+        if ([data.mainUIControlDelegate respondsToSelector:customSelector]) {
+            [control addTarget:data.mainUIControlDelegate action:customSelector forControlEvents:controlEvents];
+        }
+    }
+}
+
 #pragma mark UITextField Delegate methods
 - (void) textFieldDidBeginEditing:(UITextField *)textField {
     FormPortionTableViewCellData *cellData = [self getCellDataForGivenTag:(int)[textField tag]];
@@ -425,6 +466,17 @@
 
 - (FormPortionTableViewCellData *) getFormPortionCellDataForKey:(NSString *) forKey {
     return [mDicFormContentTableData objectForKey:forKey];
+}
+
+- (FormPortionTableViewCellData *) getFormPortionCellDataAtIndex:(NSUInteger)itemIndex {
+    if (itemIndex < [mArrFormContentIdentifiersOrder count]) {
+        NSString *contentIdentifier = [mArrFormContentIdentifiersOrder objectAtIndex:itemIndex];
+        if ([[mDicFormContentTableData allKeys] containsObject:contentIdentifier]) {
+            // NSLog(@"contentId: %@", contentIdentifier);
+            return [mDicFormContentTableData objectForKey:contentIdentifier];
+        }
+    }
+    return nil;
 }
 
 - (FormPortionTableViewCellData *) getCellDataForGivenTag:(int) tag {
