@@ -26,6 +26,7 @@
 @synthesize mArrFormContentIdentifiersOrder;
 @synthesize mDicFormContentTableData;
 @synthesize formContainer;
+@synthesize toolbarForKeyboard;
 @synthesize setTableViewCellsClearColor;
 
 - (id) initWithContentIdentifiersArray:(NSMutableArray *)contentIdentifiers
@@ -250,9 +251,12 @@
                 
                 [cellTextView.txtVwDescription setTag:data.tag];
                 [cellTextView.txtVwDescription setEditable:data.isEnabled];
-                //                cellProblem.txtVwDescription.inputAccessoryView = self.toolbarForKeyboard;
-                //                cellProblem.txtVwDescription.delegate = self;
-                
+                // to use toolbarForKeyboard with a done button it must have been assigned at the time DynamicTableManager datasource is setup.
+                if (data.mainUIControlDelegate) {
+                    cellTextView.txtVwDescription.inputAccessoryView = self.toolbarForKeyboard;
+                    cellTextView.txtVwDescription.delegate = data.mainUIControlDelegate;
+                }
+
                 [cellTextView.txtVwDescription setText:[[self getCellDataFromUserDefaultsForKey:data.contentIdentifier] stringDataHolder]];
                 
                 [data setResetControlUI:NO];    //  This can be used to reset the content of this whole cell. Like it's been done in TYPE_TEXTAREA cells.

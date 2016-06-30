@@ -13,6 +13,8 @@
 @interface DynamicTableManager : NSObject <UITextFieldDelegate>
 
 @property (weak, nonatomic) UITableView *formContainer;
+// The toolbar to be rendered on top of keyboard
+@property (strong, nonatomic) UIToolbar *toolbarForKeyboard;
 @property (nonatomic, strong) NSMutableArray* mArrFormContentIdentifiersOrder;
 @property (nonatomic, strong) NSMutableDictionary* mDicFormContentTableData;
 @property (nonatomic, assign, getter=isSetTableViewCellsClearColor) BOOL setTableViewCellsClearColor;
