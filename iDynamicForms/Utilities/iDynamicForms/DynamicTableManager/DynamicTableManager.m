@@ -29,9 +29,9 @@
 @synthesize toolbarForKeyboard;
 @synthesize setTableViewCellsClearColor;
 
-- (id) initWithContentIdentifiersArray:(NSMutableArray *)contentIdentifiers
-                  andContentDictionary:(NSMutableDictionary *)contentDictionary
-                          andTableView:(UITableView *)formTableView {
+- (id)initWithContentIdentifiersArray:(NSMutableArray *)contentIdentifiers
+                 andContentDictionary:(NSMutableDictionary *)contentDictionary
+                         andTableView:(UITableView *)formTableView {
     self = [super init];
     if (self) {
         mArrFormContentIdentifiersOrder = contentIdentifiers;
@@ -43,7 +43,10 @@
     return self;
 }
 
-- (id) initWithContentIdentifiersArray:(NSMutableArray *)contentIdentifiers andContentDictionary:(NSMutableDictionary *)contentDictionary initialFormContentAs:(FormPortionTableViewCellData *)object forKey:(NSString *)forKey {
+- (id)initWithContentIdentifiersArray:(NSMutableArray *)contentIdentifiers
+                 andContentDictionary:(NSMutableDictionary *)contentDictionary
+                 initialFormContentAs:(FormPortionTableViewCellData *)object
+                               forKey:(NSString *)forKey {
     self = [super init];
     if (self) {
         mArrFormContentIdentifiersOrder = contentIdentifiers;
@@ -104,16 +107,20 @@
                 if ([data mArrSegmentedControlTitles] != nil && [[data mArrSegmentedControlTitles] count] > 1) {
                     [cellSegmentedControl.segmentedControl removeAllSegments];
                     for (int i = 0; i < [[data mArrSegmentedControlTitles] count]; i++) {
-                        [cellSegmentedControl.segmentedControl insertSegmentWithTitle:[[data mArrSegmentedControlTitles] objectAtIndex:i]  atIndex:i animated:NO];
+                        [cellSegmentedControl.segmentedControl
+                         insertSegmentWithTitle:[[data mArrSegmentedControlTitles] objectAtIndex:i] atIndex:i animated:NO];
                     }
                     
-                    [cellSegmentedControl.segmentedControl setSelectedSegmentIndex:[[self getCellDataFromUserDefaultsForKey:data.contentIdentifier] intDataHolder]];
+                    [cellSegmentedControl.segmentedControl
+                     setSelectedSegmentIndex:[[self getCellDataFromUserDefaultsForKey:data.contentIdentifier] intDataHolder]];
                 }
                 
                 if (data.mainUIControlSelector) {
                     SEL customSelector = NSSelectorFromString(data.mainUIControlSelector);
                     if ([data.mainUIControlDelegate respondsToSelector:customSelector]) {
-                        [cellSegmentedControl.segmentedControl addTarget:data.mainUIControlDelegate action:customSelector forControlEvents:UIControlEventValueChanged];
+                        [cellSegmentedControl.segmentedControl addTarget:data.mainUIControlDelegate
+                                                                  action:customSelector
+                                                        forControlEvents:UIControlEventValueChanged];
                     }
                 }
             }
@@ -199,7 +206,9 @@
                 if (data.mainUIControlSelector) {
                     SEL customSelector = NSSelectorFromString(data.mainUIControlSelector);
                     if ([data.mainUIControlDelegate respondsToSelector:customSelector]) {
-                        [cellLink.btnLink addTarget:data.mainUIControlDelegate action:customSelector forControlEvents:UIControlEventTouchUpInside];
+                        [cellLink.btnLink addTarget:data.mainUIControlDelegate
+                                             action:customSelector
+                                   forControlEvents:UIControlEventTouchUpInside];
                     }
                 }
                 
@@ -219,7 +228,9 @@
                 if (data.mainUIControlSelector) {
                     SEL customSelector = NSSelectorFromString(data.mainUIControlSelector);
                     if ([data.mainUIControlDelegate respondsToSelector:customSelector]) {
-                        [cellSwitch.switchChoice addTarget:data.mainUIControlDelegate action:customSelector forControlEvents:UIControlEventValueChanged];
+                        [cellSwitch.switchChoice addTarget:data.mainUIControlDelegate
+                                                    action:customSelector
+                                          forControlEvents:UIControlEventValueChanged];
                     }
                 }
                 
@@ -279,7 +290,9 @@
                 if (data.mainUIControlSelector) {
                     SEL customSelector = NSSelectorFromString(data.mainUIControlSelector);
                     if ([data.mainUIControlDelegate respondsToSelector:customSelector]) {
-                        [cellTextField.txtFldDetail addTarget:data.mainUIControlDelegate action:customSelector forControlEvents:UIControlEventEditingChanged];
+                        [cellTextField.txtFldDetail addTarget:data.mainUIControlDelegate
+                                                       action:customSelector
+                                             forControlEvents:UIControlEventEditingChanged];
                     }
                 }
                 
@@ -311,7 +324,10 @@
     }
 }
 
-- (void) setActionsForTableViewCell:(UITableViewCell *)cell withMainUIControlDelegate:(id)mainUIControlDelegate forPrimaryActionsArr:(NSArray *)arrActions {
+- (void) setActionsForTableViewCell:(UITableViewCell *)cell
+          withMainUIControlDelegate:(id)mainUIControlDelegate
+               forPrimaryActionsArr:(NSArray *)arrActions {
+    
     if (mainUIControlDelegate) {
         for (NSUInteger i = 0; i < [arrActions count]; i++) {
             SEL customSelector = NSSelectorFromString([arrActions objectAtIndex:i]);
@@ -334,7 +350,10 @@
     }
 }
 
-- (void) setActionForUIControl:(UIControl *)control forControlEvents:(UIControlEvents)controlEvents withData:(FormPortionTableViewCellData *)data {
+- (void) setActionForUIControl:(UIControl *)control
+              forControlEvents:(UIControlEvents)controlEvents
+                      withData:(FormPortionTableViewCellData *)data {
+    
     if (data.mainUIControlSelector && data.mainUIControlDelegate) {
         SEL customSelector = NSSelectorFromString(data.mainUIControlSelector);
         if ([data.mainUIControlDelegate respondsToSelector:customSelector]) {
@@ -352,14 +371,18 @@
 - (BOOL) textFieldShouldReturn:(UITextField *)textField {
     FormPortionTableViewCellData *nextCellData = [self getNextTextFieldCellForGivenCurrentTextFieldCellKey:currentCellID];
     if (!nextCellData) { // which means there is no any textFields in the form so should hide the keyboard
-        [formContainer scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+        [formContainer scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
+                             atScrollPosition:UITableViewScrollPositionBottom
+                                     animated:YES];
         [textField resignFirstResponder];
         return YES;
     } else {
         // Note: within the "generateFormCellForRowAtIndexPath" method, all the custom UITableViewCells have assigned
         // indexPath.row as the tag of the cell.
         NSUInteger tag = [mArrFormContentIdentifiersOrder indexOfObject:[nextCellData contentIdentifier]];
-        [formContainer scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:tag inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        [formContainer scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:tag inSection:0]
+                             atScrollPosition:UITableViewScrollPositionTop
+                                     animated:YES];
         TextFieldTableViewCell *nextTextField = (TextFieldTableViewCell *)[formContainer viewWithTag:tag];
         [nextTextField.txtFldDetail becomeFirstResponder];
         return NO;
@@ -372,11 +395,12 @@
  * We are maintaing an NSMutableArray to hold the order of the data object keys and NSMutableDictionary to hold the data objects for their
  * corresponding ContentIdentifier keys.
  */
-- (BOOL) initiateFormContentWithObject:(FormPortionTableViewCellData *)object forKey:(NSString *) forKey {
+- (BOOL)initiateFormContentWithObject:(FormPortionTableViewCellData *)object forKey:(NSString *)forKey {
     BOOL result = NO;
     if ([mArrFormContentIdentifiersOrder count] == 0) {
         mArrFormContentIdentifiersOrder = [[NSMutableArray alloc] initWithObjects:forKey, nil];
-        mDicFormContentTableData = [[NSMutableDictionary alloc] initWithObjects:[NSArray arrayWithObject:object] forKeys:[NSArray arrayWithObject:forKey]];
+        mDicFormContentTableData = [[NSMutableDictionary alloc] initWithObjects:[NSArray arrayWithObject:object]
+                                                                        forKeys:[NSArray arrayWithObject:forKey]];
         result = YES;
     }
     
@@ -387,7 +411,7 @@
  * This method is used to add specific data object in between the DataSource, after a given data object (which specified by the key).
  * Basically this is the method we use to populate the whole dataSource after we initiate it useing "initiateFormContentWithObject" method.
  */
-- (BOOL) insertAfterKey:(NSString *) key object:(FormPortionTableViewCellData *) object forKey:(NSString *) forKey {
+- (BOOL)insertAfterKey:(NSString *)key object:(FormPortionTableViewCellData *)object forKey:(NSString *)forKey {
     BOOL result = NO;
     if ([mArrFormContentIdentifiersOrder count] > 0) {
         int index = 0;
@@ -407,7 +431,7 @@
 /*
  * Remove data object which is in datasource of the Form TableView, for the given Key (which is ContentIdentifier of that cell).
  */
-- (BOOL) removeObjectForKey:(NSString *) forKey {
+- (BOOL)removeObjectForKey:(NSString *)forKey {
     BOOL result = NO;
     int index = 0;
     for (NSString *inKey in mArrFormContentIdentifiersOrder) {
@@ -426,7 +450,7 @@
  * Clear out the dataSource already filled in data.
  * if "forKey" parameter sent nil, then it will clear out the whole UI.
  */
-- (BOOL) resetDataSourceForKey:(NSString *) forKey {
+- (BOOL)resetDataSourceForKey:(NSString *)forKey {
     BOOL result = NO;
     int index = 0;
     for (NSString *inKey in mArrFormContentIdentifiersOrder) {
@@ -458,17 +482,17 @@
 /*
  * Get the indexPath of the Form TableView Cell when its correspondent key is given
  */
-- (NSIndexPath *) getIndexPathForKey: (NSString *) key {
+- (NSIndexPath *)getIndexPathForKey:(NSString *)key {
     NSInteger row = [mArrFormContentIdentifiersOrder indexOfObject:key];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
     return indexPath;
 }
 
-- (FormPortionTableViewCellData *) getFormPortionCellDataForKey:(NSString *) forKey {
+- (FormPortionTableViewCellData *)getFormPortionCellDataForKey:(NSString *)forKey {
     return [mDicFormContentTableData objectForKey:forKey];
 }
 
-- (FormPortionTableViewCellData *) getFormPortionCellDataAtIndex:(NSUInteger)itemIndex {
+- (FormPortionTableViewCellData *)getFormPortionCellDataAtIndex:(NSUInteger)itemIndex {
     if (itemIndex < [mArrFormContentIdentifiersOrder count]) {
         NSString *contentIdentifier = [mArrFormContentIdentifiersOrder objectAtIndex:itemIndex];
         if ([[mDicFormContentTableData allKeys] containsObject:contentIdentifier]) {
@@ -479,7 +503,7 @@
     return nil;
 }
 
-- (FormPortionTableViewCellData *) getCellDataForGivenTag:(int) tag {
+- (FormPortionTableViewCellData *)getCellDataForGivenTag:(int)tag {
     FormPortionTableViewCellData *result;
     if ([mArrFormContentIdentifiersOrder count] > 0) {
         for (int i = 0; i < [mArrFormContentIdentifiersOrder count]; i++) {
@@ -493,7 +517,7 @@
     return result;
 }
 
-- (FormPortionTableViewCellData *) getNextTextFieldCellForGivenCurrentTextFieldCellKey:(NSString *) currentKey {
+- (FormPortionTableViewCellData *)getNextTextFieldCellForGivenCurrentTextFieldCellKey:(NSString *)currentKey {
     FormPortionTableViewCellData *result;
     if ([mArrFormContentIdentifiersOrder count] > 0) {
         NSUInteger index = [mArrFormContentIdentifiersOrder indexOfObject:currentKey];
@@ -514,7 +538,7 @@
     return result;
 }
 
-- (UITableViewCell *) getFormCellForKey:(NSString *)forKey forKindOfClass:(Class)aClass {
+- (UITableViewCell *)getFormCellForKey:(NSString *)forKey forKindOfClass:(Class)aClass {
     NSIndexPath *indexPath = [self getIndexPathForKey:forKey];
     if ([[formContainer cellForRowAtIndexPath:indexPath] isKindOfClass:aClass]) {
         return [formContainer cellForRowAtIndexPath:indexPath];
@@ -532,13 +556,13 @@
  * For now I have added only 4 types of essential data holders, NSString, int, float, BOOL
  * Related StackOverflow answer: http://stackoverflow.com/questions/2315948/how-to-store-custom-objects-in-nsuserdefaults
  */
-- (void) keepInUserDefaults:(FormPortionTableViewCellData *)cellData forKey:(NSString *) forKey {
+- (void)keepInUserDefaults:(FormPortionTableViewCellData *)cellData forKey:(NSString *)forKey {
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:cellData];
     [[NSUserDefaults standardUserDefaults] setObject:data forKey:forKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (FormPortionTableViewCellData *) getCellDataFromUserDefaultsForKey:(NSString *)forKey {
+- (FormPortionTableViewCellData *)getCellDataFromUserDefaultsForKey:(NSString *)forKey {
     if ([[[NSUserDefaults standardUserDefaults] dictionaryRepresentation].allKeys containsObject:forKey]) {
         NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:forKey];
         if (data != NULL) {
@@ -552,17 +576,17 @@
 }
 
 #pragma mark - Data Accessor methods to Form UI (for the UITableViewCells, which are visible at the moment)
-- (NSString *) getDataStringFromTextFieldForCellKey:(NSString *)forKey {
+- (NSString *)getDataStringFromTextFieldForCellKey:(NSString *)forKey {
     TextFieldTableViewCell *cell = (TextFieldTableViewCell *)[self getFormCellForKey:forKey forKindOfClass:TextFieldTableViewCell.class];
     return (cell) ? [cell.txtFldDetail text] : nil ;
 }
 
-- (NSString *) getDataStringFromTextViewForCellKey:(NSString *)forKey {
+- (NSString *)getDataStringFromTextViewForCellKey:(NSString *)forKey {
     TextViewTableViewCell *cell = (TextViewTableViewCell *)[self getFormCellForKey:forKey forKindOfClass:TextViewTableViewCell.class];
     return (cell) ? [cell.txtVwDescription text] : nil ;
 }
 
-- (BOOL) getBooleanFromSwitchForCellKey:(NSString *)forKey {
+- (BOOL)getBooleanFromSwitchForCellKey:(NSString *)forKey {
     SwitchesTableViewCell *cell = (SwitchesTableViewCell *)[self getFormCellForKey:forKey forKindOfClass:SwitchesTableViewCell.class];
     return (cell) ? [cell.switchChoice isOn] : false ;
 }

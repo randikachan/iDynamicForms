@@ -19,48 +19,52 @@
 @property (nonatomic, strong) NSMutableDictionary* mDicFormContentTableData;
 @property (nonatomic, assign, getter=isSetTableViewCellsClearColor) BOOL setTableViewCellsClearColor;
 
-- (id) initWithContentIdentifiersArray:(NSMutableArray *)contentIdentifiers
-                  andContentDictionary:(NSMutableDictionary *)contentDictionary
-                          andTableView:(UITableView *)formTableView;
+- (id)initWithContentIdentifiersArray:(NSMutableArray *)contentIdentifiers
+                 andContentDictionary:(NSMutableDictionary *)contentDictionary
+                         andTableView:(UITableView *)formTableView;
 
-- (id) initWithContentIdentifiersArray:(NSMutableArray *)contentIdentifiers
-                  andContentDictionary:(NSMutableDictionary *)contentDictionary
-                  initialFormContentAs:(FormPortionTableViewCellData *)object
-                                forKey:(NSString *)forKey;
+- (id)initWithContentIdentifiersArray:(NSMutableArray *)contentIdentifiers
+                 andContentDictionary:(NSMutableDictionary *)contentDictionary
+                 initialFormContentAs:(FormPortionTableViewCellData *)object
+                               forKey:(NSString *)forKey;
 
-- (BOOL) initiateFormContentWithObject:(FormPortionTableViewCellData *)object forKey:(NSString *) forKey;
+- (BOOL)initiateFormContentWithObject:(FormPortionTableViewCellData *)object forKey:(NSString *)forKey;
 
-- (BOOL) insertAfterKey:(NSString *) key object:(FormPortionTableViewCellData *) object forKey:(NSString *) forKey;
+- (BOOL)insertAfterKey:(NSString *)key object:(FormPortionTableViewCellData *)object forKey:(NSString *)forKey;
 
-- (BOOL) removeObjectForKey:(NSString *) forKey;
+- (BOOL)removeObjectForKey:(NSString *)forKey;
 
-- (BOOL) resetDataSourceForKey:(NSString *) forKey;
+- (BOOL)resetDataSourceForKey:(NSString *)forKey;
 
-- (NSIndexPath *) getIndexPathForKey: (NSString *) key;
+- (NSIndexPath *)getIndexPathForKey:(NSString *)key;
 
-- (FormPortionTableViewCellData *) getFormPortionCellDataForKey: (NSString *) forKey;
+- (FormPortionTableViewCellData *)getFormPortionCellDataForKey:(NSString *)forKey;
 
-- (FormPortionTableViewCellData *) getFormPortionCellDataAtIndex:(NSUInteger)itemIndex;
+- (FormPortionTableViewCellData *)getFormPortionCellDataAtIndex:(NSUInteger)itemIndex;
 
-- (UITableViewCell *) generateFormCellForRowAtIndexPath:(NSIndexPath *) indexPath forFormContainer:(UITableView *)tableView;
+- (UITableViewCell *)generateFormCellForRowAtIndexPath:(NSIndexPath *)indexPath forFormContainer:(UITableView *)tableView;
 
-- (void) setActionForUIControl:(UIControl *)control withData:(FormPortionTableViewCellData *)data forAction:(NSString *)action;
+- (void)setActionForUIControl:(UIControl *)control withData:(FormPortionTableViewCellData *)data forAction:(NSString *)action;
 
-- (void) setActionsForTableViewCell:(UITableViewCell *)cell withMainUIControlDelegate:(id)mainUIControlDelegate forPrimaryActionsArr:(NSArray *)arrActions;
+- (void)setActionsForTableViewCell:(UITableViewCell *)cell
+         withMainUIControlDelegate:(id)mainUIControlDelegate
+              forPrimaryActionsArr:(NSArray *)arrActions;
 
-- (void) setActionForUIControl:(UIControl *)control withData:(FormPortionTableViewCellData *)data;
+- (void)setActionForUIControl:(UIControl *)control withData:(FormPortionTableViewCellData *)data;
 
-- (void) setActionForUIControl:(UIControl *)control forControlEvents:(UIControlEvents)controlEvents withData:(FormPortionTableViewCellData *)data;
+- (void)setActionForUIControl:(UIControl *)control
+             forControlEvents:(UIControlEvents)controlEvents
+                     withData:(FormPortionTableViewCellData *)data;
 
-- (UITableViewCell *) getFormCellForKey:(NSString *)forKey forKindOfClass:(Class)aClass;
+- (UITableViewCell *)getFormCellForKey:(NSString *)forKey forKindOfClass:(Class)aClass;
 
-- (void) keepInUserDefaults:(FormPortionTableViewCellData *)cellData forKey:(NSString *) forKey;
+- (void)keepInUserDefaults:(FormPortionTableViewCellData *)cellData forKey:(NSString *)forKey;
 
-- (FormPortionTableViewCellData *) getCellDataFromUserDefaultsForKey:(NSString *)forKey;
+- (FormPortionTableViewCellData *)getCellDataFromUserDefaultsForKey:(NSString *)forKey;
 
-- (NSString *) getDataStringFromTextFieldForCellKey:(NSString *)forKey;
+- (NSString *)getDataStringFromTextFieldForCellKey:(NSString *)forKey;
 
-- (NSString *) getDataStringFromTextViewForCellKey:(NSString *)forKey;
+- (NSString *)getDataStringFromTextViewForCellKey:(NSString *)forKey;
 
-- (BOOL) getBooleanFromSwitchForCellKey:(NSString *)forKey;
+- (BOOL)getBooleanFromSwitchForCellKey:(NSString *)forKey;
 @end
