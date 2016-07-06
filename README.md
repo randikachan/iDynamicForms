@@ -19,11 +19,14 @@ My major objective on publishing this as an open sourced project in GitHub is to
 ##### So Let's get into How these forms are made up and inner working
 iDynamicForms are totally dependent on `UITableView` and `UITableViewCell` classes. You already know that `UITableView` has to be backed up by
 a data source, mostly an array of data for each row to be populated and represent the data. Here we have adapted the same concept, iDynamicForms are
-always being backed up by a hybrid combination of `NSArray` and `NSMutableDictionary` objects. The reason to use NSDictionary to hold the data objects
+always being backed up by a hybrid combination of `NSArray` and `NSMutableDictionary` objects.
+
+The reason to use `NSMutableDictionary` to hold the data objects
 for all cells which makes up the form is, sometimes we may need to grab a particular data object of a cell just by calling its name. So in that case
 `NSMutableDictionary` API helps a lot. But `NSMutableDictionary` lacks one thing. That is it may jumble the order of the objects at runtime in time to time we run
 the application. So in order to keep the order of the objects for each cell in the order the cells may appear, we used the `NSArray` in combination
-with the `NSMutableDictionary`. So in order to make this work we have come up with a convenient simple API.
+with the `NSMutableDictionary`. So in order to make this work we have come up with a convenient simple API. Not only that we can add/remove `UITableViewCells` with
+form content such as messages, buttons, text fields, etc. arbitrary using this structure.
 
 # Note:
 Here the form UI is really simple what I have created initially just to give you an idea. And also I will add functionality little by little later on
