@@ -14,6 +14,11 @@ After you implement, `TableViewFormDataSource` protocol within Your `ViewControl
 So here I have created a reusable code-structure/mini-framework/skeleton to use `UITableView` objects to build Dynamic Forms in iOS Applications.
 My major objective on publishing this as an open sourced project in GitHub is to receive your all feedback to identify pros and cons of this implementation and improve this if possible.
 
+# So Let's get into How these forms are made up and inner working:
+iDynamicForms are totally dependent on UITableView and UITableViewCell classes. You already know that UITableView has to be backed up by
+a data source, mostly an array of data for each row to be populated and represent the data. Here we have adapted the same concept, iDynamicForms are
+always being backed up by a hybrid combination of `NSArray` and `NSDictionary` objects.
+
 # Note:
 Here the form UI is really simple what I have created initially just to give you an idea. And also I will add functionality little by little later on
 as time permits me.
