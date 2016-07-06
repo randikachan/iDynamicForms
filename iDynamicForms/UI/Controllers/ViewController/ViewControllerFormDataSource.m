@@ -17,7 +17,7 @@
 #import "SwitchesTableViewCell.h"
 #import "ButtonTableViewCell.h"
 #import "EmptyTableViewCell.h"
-#import "Config.h"
+#import "IDynamicFormsConfig.h"
 
 @interface ViewControllerFormDataSource () {
     DynamicTableManager *dynamicManager;

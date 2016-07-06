@@ -1,8 +1,8 @@
 //
-//  Config.h
-//  DynamicTableView
+//  IDynamicFormsConfig.h
+//  iDynamicForms
 //
-//  Created by Kasun Randika on 5/9/16.
+//  Created by Kasun Randika on 6/30/16.
 //  Copyright © 2016 Kasun Randika. All rights reserved.
 //
 
@@ -56,6 +56,6 @@
 #define INT_PREFIX              @"intValue"
 #define FLOAT_PREFIX            @"floatValue"
 #define BOOL_PREFIX             @"boolValues"
-@interface Config : NSObject
+@interface IDynamicFormsConfig : NSObject
 
 @end
