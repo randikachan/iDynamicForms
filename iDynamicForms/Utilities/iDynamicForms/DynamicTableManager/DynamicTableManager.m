@@ -286,7 +286,7 @@
                 cellTextField = [nib objectAtIndex:0];
                 
                 [cellTextField.txtFldDetail setTag:data.tag];
-                cellTextField.txtFldDetail.delegate = self; //data.mainUIControlDelegate;
+                cellTextField.txtFldDetail.delegate = data.mainUIControlDelegate;
                 if (data.mainUIControlSelector) {
                     SEL customSelector = NSSelectorFromString(data.mainUIControlSelector);
                     if ([data.mainUIControlDelegate respondsToSelector:customSelector]) {

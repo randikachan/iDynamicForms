@@ -31,6 +31,7 @@
 #pragma mark Cell-UIControl actions and delegates
 @synthesize mainUIControlSelector;
 @synthesize mainUIControlDelegate;
+@synthesize UIKitUIControlDelegate;
 
 #pragma mark Cell-UIControl user interactive data
 @synthesize printData;

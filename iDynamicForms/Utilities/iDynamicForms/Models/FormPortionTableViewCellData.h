@@ -36,7 +36,7 @@
 @property (nonatomic, assign) CGFloat cellHeight;
 @property (nonatomic, assign, getter=isSecuredTextField) BOOL securedTextField;   // Whether a textField's text is secured text or not
 @property (nonatomic, assign, getter=isEnabled) BOOL uiState;   // Switch enabled or disabled
-@property (nonatomic, assign, getter=isTurnedOn) BOOL state;    //  Switch ON/OFF
+@property (nonatomic, assign, getter=isTurnedOn) BOOL state;    // Switch ON/OFF
 @property (nonatomic, assign, getter=isInvalid) BOOL validationError;   // True/False upon data validation
 @property (nonatomic, assign, getter=shouldResetControl) BOOL resetControlUI;   // True/False upon data validation
 
@@ -44,6 +44,7 @@
 // can pass a custom selector(method) which will be assigned as the target of the UI Control within the cell
 @property (nonatomic, strong) NSString *mainUIControlSelector;
 @property (nonatomic,strong) id mainUIControlDelegate;
+@property (nonatomic,strong) id UIKitUIControlDelegate; // to provide iOS API Delegate methods references.
 
 #pragma mark Cell-UIControl user interactive data
 @property (nonatomic, assign, getter=shouldPrintData) BOOL printData;
